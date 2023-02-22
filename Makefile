@@ -16,7 +16,7 @@ MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 
 NAME = so_long
-SRC = validate_map.c
+SRC = main.c map_check.c map_check_utils.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libs/libft/libft.a
