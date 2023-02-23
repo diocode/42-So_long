@@ -6,11 +6,23 @@
 /*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/02/22 19:39:31 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:03:58 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int		strlen_so_long(char	*str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
+}
 
 char	**file_to_map(char *file)
 {
@@ -29,7 +41,7 @@ char	**file_to_map(char *file)
 	while (gnl && lines++ >= 0)
 		gnl = get_next_line(fd);
 	close(fd);
-	map = (char **)malloc(sizeof(char *) * lines);
+	map = (char **)malloc(sizeof(t_map) * lines);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (map);

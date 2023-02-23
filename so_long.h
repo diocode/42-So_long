@@ -6,7 +6,7 @@
 /*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/02/21 10:55:00 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:49:19 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int	comp_check_check_check(t_map *map, int start_exit);
 int	path_check(char *file, t_map *map);
 void	fill(char **layout_cpy, t_map *map, int x, int y);
 char	**file_to_map(char *file);
+int		strlen_so_long(char *str);
 
 #endif

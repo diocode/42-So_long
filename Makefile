@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 

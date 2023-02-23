@@ -6,7 +6,7 @@
 /*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/02/22 18:25:38 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:57:52 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	comp_check_check_check(t_map *map, int start_exit)
 	while (++y < map->lines)
 	{
 		x = -1;
-		while (map->layout[y][++x] != '\n')
+		while (map->layout[y][++x] != '\n' && map->layout[y][x] != '\0')
 		{
 			i = -1;
 			while (str[++i])
@@ -92,7 +92,7 @@ int	wall_check(t_map *map)
 		x = -1;
 		if (y == 0 || y == map->lines - 1)
 		{
-			while (map->layout[y][++x] != '\n')
+			while (map->layout[y][++x] != '\n' && map->layout[y][x] != '\0')
 			{
 				if (map->layout[y][x] != '1')
 					return (1);
@@ -115,12 +115,12 @@ int	dimension_check(t_map *map)
 	int	len;
 	int	x;
 
-	map->len = ft_strlen(map->layout[0]) - 1;
+	map->len = strlen_so_long(map->layout[0]);
 	len = 0;
 	x = 1;
 	while (map->layout[x])
 	{
-		len = ft_strlen(map->layout[x]) - 1;
+		len = strlen_so_long(map->layout[x]);
 		if (len == map->len)
 			x++;
 		else
