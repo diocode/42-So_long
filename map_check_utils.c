@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/02/23 16:57:52 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:51:31 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	comp_check_check_check(t_map *map, int start_exit)
+int	comp_check_check_check(t_data *data, int start_exit)
 {
 	int		i;
 	int		x;
@@ -21,18 +21,18 @@ int	comp_check_check_check(t_map *map, int start_exit)
 
 	if (start_exit != 2)
 		return (1);
-	if (map->collect < 1)
+	if (data->map.collect < 1)
 		return (1);
 	str = "01CEP";
 	y = -1;
-	while (++y < map->lines)
+	while (++y < data->map.lines)
 	{
 		x = -1;
-		while (map->layout[y][++x] != '\n' && map->layout[y][x] != '\0')
+		while (data->map.layout[y][++x] != '\n' && data->map.layout[y][x] != '\0')
 		{
 			i = -1;
 			while (str[++i])
-				if (map->layout[y][x] == str[i])
+				if (data->map.layout[y][x] == str[i])
 					break ;
 			if (i == 5)
 				return (1);
@@ -41,68 +41,68 @@ int	comp_check_check_check(t_map *map, int start_exit)
 	return (0);
 }
 
-int	comp_check_check(t_map *map, int x, int y)
+int	comp_check_check(t_data *data, int x, int y)
 {
 	int	start_exit;
 
 	start_exit = 0;
-	if (map->layout[y][x] == 'C')
-		map->collect++;
-	if (map->layout[y][x] == 'P')
+	if (data->map.layout[y][x] == 'C')
+		data->map.collect++;
+	if (data->map.layout[y][x] == 'P')
 	{
-		map->start.x = x;
-		map->start.y = y;
+		data->map.player.x = x;
+		data->map.player.y = y;
 		start_exit++;
 	}
-	if (map->layout[y][x] == 'E')
+	if (data->map.layout[y][x] == 'E')
 	{
-		map->exit.x = x;
-		map->exit.y = y;
+		data->map.exit.x = x;
+		data->map.exit.y = y;
 		start_exit++;
 	}
 	return (start_exit);
 }
 
-int	comp_check(t_map *map)
+int	comp_check(t_data *data)
 {
 	int	start_exit;
 	int	x;
 	int	y;
 
-	map->collect = 0;
+	data->map.collect = 0;
 	start_exit = 0;
 	y = -1;
-	while (map->layout[++y])
+	while (data->map.layout[++y])
 	{
 		x = -1;
-		while (map->layout[y][++x])
-			start_exit += comp_check_check(map, x, y);
+		while (data->map.layout[y][++x])
+			start_exit += comp_check_check(data, x, y);
 	}
-	return (comp_check_check_check(map, start_exit));
+	return (comp_check_check_check(data, start_exit));
 }
 
-int	wall_check(t_map *map)
+int	wall_check(t_data *data)
 {	
 	int	y;
 	int	x;
 
 	y = 0;
-	while (y < map->lines)
+	while (y < data->map.lines)
 	{
 		x = -1;
-		if (y == 0 || y == map->lines - 1)
+		if (y == 0 || y == data->map.lines - 1)
 		{
-			while (map->layout[y][++x] != '\n' && map->layout[y][x] != '\0')
+			while (data->map.layout[y][++x] != '\n' && data->map.layout[y][x] != '\0')
 			{
-				if (map->layout[y][x] != '1')
+				if (data->map.layout[y][x] != '1')
 					return (1);
 			}
 			y++;
 		}
 		else
 		{
-			if (map->layout[y][0] != '1'
-				|| map->layout[y][ft_strlen(map->layout[y]) - 2] != '1')
+			if (data->map.layout[y][0] != '1'
+				|| data->map.layout[y][ft_strlen(data->map.layout[y]) - 2] != '1')
 				return (1);
 			y++;
 		}
@@ -110,18 +110,18 @@ int	wall_check(t_map *map)
 	return (0);
 }
 
-int	dimension_check(t_map *map)
+int	dimension_check(t_data *data)
 {
 	int	len;
 	int	x;
 
-	map->len = strlen_so_long(map->layout[0]);
+	data->map.len = strlen_solong(data->map.layout[0]);
 	len = 0;
 	x = 1;
-	while (map->layout[x])
+	while (data->map.layout[x])
 	{
-		len = strlen_so_long(map->layout[x]);
-		if (len == map->len)
+		len = strlen_solong(data->map.layout[x]);
+		if (len == data->map.len)
 			x++;
 		else
 			return (1);
