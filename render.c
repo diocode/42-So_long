@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/03 13:37:28 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/05 15:12:58 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int	handle_keypress(int keysym, t_data *data)
 int	render(t_data *data)
 {
 	render_win(data);
-//	mlx_loop_hook(data->mlx_ptr, rendering, &data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, handle_keypress, &data);
-	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, close_win, NULL);
+//	mlx_loop_hook(data->mlx_ptr, render_map, &data);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &close_win, NULL);
 	render_map(data);
 	mlx_loop(data->mlx_ptr);
-
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	return (0);

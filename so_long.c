@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/03 13:00:39 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:10:17 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int main(int ac, char **av)
 {
 	t_data	*data;
 	
-	if (ac != 2)
+	if (ac != 2 || file_check(av[1]) != 0)
 		return (1);
 	data = generate_data();
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (1);
 	map_check(av[1], data);
-	if (file_check(av[1]) != 0 || data->map.valid != 0) 
+	if (data->map.valid != 0 || !data->map.layout) 
 		return 1;
 	render(data);
 	return (0);

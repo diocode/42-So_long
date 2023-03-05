@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: digoncal <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/02/15 11:21:33 by digoncal         ###   ########.fr        #
+#    Updated: 2023/03/05 16:18:44 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 
 NAME = so_long
-SRC = so_long.c map_check.c map_check_utils.c render.c render_utils1.c render_utils2.c
+SRC = so_long.c map_check.c map_check_utils.c render.c render_utils.c move_player.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libs/libft/libft.a

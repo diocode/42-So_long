@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/03 13:00:29 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/05 15:08:50 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	t_map	map;
-	t_point	size;
 	t_point	tile;
-	
 }	t_data;
 
 /*---------- VARIABLES ----------*/
@@ -82,9 +80,9 @@ int	strlen_solong(char *str);
 int	render_win(t_data *data);
 int	render_map(t_data *data);
 t_data	*generate_data(void);
-void	render_wall_border(t_data *data, int x, int y);
-void	render_wall_corner(t_data *data, int x, int y);
-void	render_tile(t_data *data, int x, int y);
+void	render_wall_border(t_data *data, int y, int x);
+void	render_wall_corner(t_data *data, int y, int x);
+void	render_tile(t_data *data, int y, int x);
 void	move_player(t_data *data);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils1.c                                    :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/03 12:54:48 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:18:30 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	render_wall_border(t_data *data, int x, int y)
+void	render_wall_border(t_data *data, int y, int x)
 {
 	if (y == 0 && x > 0 && x < data->map.len - 1)
 	{
@@ -36,7 +36,7 @@ void	render_wall_border(t_data *data, int x, int y)
 	}
 }
 
-void	render_wall_corner(t_data *data, int x, int y)
+void	render_wall_corner(t_data *data, int y, int x)
 {
 	if (y == 0 && x == 0)
 	{
@@ -65,7 +65,7 @@ void	render_wall_corner(t_data *data, int x, int y)
 	}
 }
 
-void	render_tile(t_data *data, int x, int y)
+void	render_tile(t_data *data, int y, int x)
 {
 	if (data->map.layout[y][x] == '0')
 	{
@@ -103,10 +103,11 @@ int render_map(t_data *data)
 			if (data->map.layout[y][x] == '1')
 			{
 				// MAKE  SURE THE PROG DOESNT SEG FAULT WHEN THE IMG DONT EXIST
-				render_wall_corner(data, x, y);
-				render_wall_border(data, x, y);
+				render_wall_corner(data, y, x);
+				render_wall_border(data, y, x);
 			}
-			render_tile(data, x, y);
+			else
+				render_tile(data, y, x);
 		}
 	}
 	return (0);

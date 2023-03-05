@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/03 12:50:29 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:11:40 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ int	path_check(char *file, t_data *data)
 
 void	map_check(char *file, t_data *data)
 {
-	//map = generate_map();
 	data->map.layout = file_to_map(file);
+	if (!data->map.layout)
+		return ;
 	while (data->map.layout[data->map.lines])
 		data->map.lines++;
 	data->map.valid = dimension_check(data) + wall_check(data);
