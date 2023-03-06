@@ -6,87 +6,61 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/05 16:18:30 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/06 21:24:57 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	render_wall_border(t_data *data, int y, int x)
-{
-	if (y == 0 && x > 0 && x < data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_u.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (y == data->map.lines - 1 && x > 0 && x < data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_d.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (y > 0 && y < data->map.lines - 1 && x == 0)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_l.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (y > 0 && y < data->map.lines - 1 && x == data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_r.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-}
-
 void	render_wall_corner(t_data *data, int y, int x)
 {
 	if (y == 0 && x == 0)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_u_l.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (y == 0 && x == data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_u_r.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_u_l, x * TILE, y * TILE);
 	if (y == data->map.lines - 1 && x == 0)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_d_l.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_d_l, x * TILE, y * TILE);
+	if (y == 0 && x == data->map.len - 1)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_u_r, x * TILE, y * TILE);
 	if (y == data->map.lines - 1 && x == data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_d_r.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_d_r, x * TILE, y * TILE);
 	if (y > 0 && y < data->map.lines - 1 && x > 0 && x < data->map.len - 1)
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall_m.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_m, x * TILE, y * TILE);
+}
+
+void	render_wall_border(t_data *data, int y, int x)
+{
+	if (y == 0 && x > 0 && x < data->map.len - 1)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_u, x * TILE, y * TILE);
+	if (y == data->map.lines - 1 && x > 0 && x < data->map.len - 1)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_d, x * TILE, y * TILE);
+	if (y > 0 && y < data->map.lines - 1 &&  x == 0)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_l, x * TILE, y * TILE);
+	if (y > 0 && y < data->map.lines - 1 && x == data->map.len - 1)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.wall_r, x * TILE, y * TILE);
 }
 
 void	render_tile(t_data *data, int y, int x)
 {
 	if (data->map.layout[y][x] == '0')
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/floor.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (data->map.layout[y][x] == 'P')
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/player.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
-	if (data->map.layout[y][x] == 'E')
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/exit.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.floor, x * TILE, y * TILE);
 	if (data->map.layout[y][x] == 'C')
-	{
-		data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/collect.xpm", &data->tile.x, &data->tile.y);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x * TILE, y * TILE);
-	}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.collect, x * TILE, y * TILE);
+	if (data->map.layout[y][x] == 'P')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.player, x * TILE, y * TILE);
+	if (data->map.layout[y][x] == 'E')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.exit, x * TILE, y * TILE);
 }
 
 int render_map(t_data *data)
@@ -102,7 +76,6 @@ int render_map(t_data *data)
 		{
 			if (data->map.layout[y][x] == '1')
 			{
-				// MAKE  SURE THE PROG DOESNT SEG FAULT WHEN THE IMG DONT EXIST
 				render_wall_corner(data, y, x);
 				render_wall_border(data, y, x);
 			}
