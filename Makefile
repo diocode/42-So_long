@@ -6,7 +6,7 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/03/05 16:18:44 by digoncal         ###   ########.fr        #
+#    Updated: 2023/03/09 15:57:09 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,12 @@ MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 
 NAME = so_long
-SRC = so_long.c map_check.c map_check_utils.c render.c render_utils.c move_player.c
+
+SRC = src/so_long.c src/map_check.c src/map_check_utils.c src/render.c src/render_utils.c src/move_player.c
 OBJ = $(SRC:.c=.o)
+
+SRC_BONUS = src/so_long_bonus.c src/map_check_bonus.c src/map_check_utils_bonus.c src/render_bonus.c src/render_utils_bonus.c src/move_player_bonus.c
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 LIBFT = libs/libft/libft.a
 
@@ -30,10 +34,16 @@ deps:
 $(NAME): $(OBJ) $(DEPS)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -g -o $(NAME)
 
+bonus: deps $(NAME)
+
+$(NAME): $(OBJ_BONUS) $(DEPS)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MLXFLAGS) -g -o $(NAME)	
+
 clean:
 	$(MAKE) $@ -C ./libs/libft
 	$(MAKE) $@ -C ./libs/minilibx
 	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_BONUS)
 
 fclean: clean
 	$(MAKE) $@ -C ./libs/libft

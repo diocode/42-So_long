@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/06 21:21:14 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:08:45 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
+# include <unistd.h>
 
 /* ---------- STRUCS ---------- */
 
@@ -83,7 +84,7 @@ typedef struct s_data
 
 /*---------- VARIABLES ----------*/
 
-#define TILE 50
+#define TILE 64
 
 /*---------- FUNCTIONS ----------*/
 
