@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/09 15:59:50 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:36:00 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,28 @@ void	generate_img(t_data *data)
 			"./textures/wall_d_r.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.wall_d = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/wall_d.xpm", &data->tile.x, &data->tile.y);
-	data->map.tiles.player = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./textures/player_idle_1.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/floor.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.exit = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/exit_4.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.collect = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/collect_idle_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.player_idle_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/player_idle_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.player_idle_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/player_idle_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_player_idle_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_player_idle_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_player_idle_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_player_idle_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.player_walk_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/player_walk_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.player_walk_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/player_walk_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_player_walk_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_player_walk_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_player_walk_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_player_walk_2.xpm", &data->tile.x, &data->tile.y);
 }
 
 t_data	*generate_data(void)
@@ -54,6 +68,9 @@ t_data	*generate_data(void)
 	data->tile.y = TILE;
 	data->tile.x = TILE;
 	data->moves = 0;
+	data->loop = 0;
+	data->idle = 0;
+	data->direc = 'r';
 	data->map.layout = 0;
 	data->map.valid = 0;
 	data->map.lines = 0;

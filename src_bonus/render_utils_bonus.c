@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/09 16:00:00 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:36:02 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	render_tile(t_data *data, int y, int x)
 			data->map.tiles.collect, x * TILE, y * TILE);
 	if (data->map.layout[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.player, x * TILE, y * TILE);
+			data->map.tiles.player_idle_1, x * TILE, y * TILE);
 	if (data->map.layout[y][x] == 'E')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->map.tiles.exit, x * TILE, y * TILE);
