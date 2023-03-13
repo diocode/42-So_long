@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/10 19:36:06 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:33:07 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_tiles
 	void	*player_walk_2;
 	void	*r_player_walk_1;
 	void	*r_player_walk_2;
+	void	*collect_idle_2;
+	void	*collect_idle_3;
 }	t_tiles;
 
 typedef struct s_map
@@ -122,6 +124,7 @@ void	map_check(char *file, t_data *data);
 int	player_idle(t_data *data);
 char	**file_to_map(char *file);
 t_data	*generate_data(void);
-void player_walk(t_data *data);
+void player_walk_x(t_data *data);
+void player_walk_y(t_data *data);
 
 #endif

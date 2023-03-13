@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:02:19 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/10 19:35:51 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:38:18 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	move_up(t_data *data)
 		return ;
 	else
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.tiles.floor, data->map.player.x * TILE, data->map.player.y * TILE);
-		data->map.player.y -= 1;
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.tiles.player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE);
+		if (data->direc == 'r')
+			data->direc = 'a';
+		else if (data->direc == 'l')
+			data->direc = 'b';
+		player_walk_y(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
@@ -45,9 +47,11 @@ void	move_down(t_data *data)
 		return ;
 	else
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.tiles.floor, data->map.player.x * TILE, data->map.player.y * TILE);
-		data->map.player.y += 1;
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.tiles.player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE);
+		if (data->direc == 'r')
+			data->direc = 'x';
+		if (data->direc == 'l')
+			data->direc = 'z';
+		player_walk_y(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
@@ -66,7 +70,7 @@ void	move_right(t_data *data)
 	else
 	{
 		data->direc = 'r';
-		player_walk(data);
+		player_walk_x(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);	
 	}
@@ -85,7 +89,7 @@ void	move_left(t_data *data)
 	else
 	{
 		data->direc = 'l';
-		player_walk(data);
+		player_walk_x(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}

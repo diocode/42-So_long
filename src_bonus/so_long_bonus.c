@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/10 19:36:00 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:22:23 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	generate_img(t_data *data)
 			"./textures/r_player_walk_1.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.r_player_walk_2 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/r_player_walk_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.collect_idle_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/collect_idle_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.collect_idle_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/collect_idle_3.xpm", &data->tile.x, &data->tile.y);
 }
 
 t_data	*generate_data(void)
