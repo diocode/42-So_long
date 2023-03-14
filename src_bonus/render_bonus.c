@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/13 14:29:17 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:01:37 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	render(t_data *data)
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &close_win, NULL);
 	mlx_loop_hook(data->mlx_ptr, &player_idle, data);
 	render_map(data);
+	start(data);
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);

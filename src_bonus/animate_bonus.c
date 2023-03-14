@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:18:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/13 14:40:31 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:55:13 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ void player_walk_y(t_data *data)
 		data->map.player.y -= 1;
 		t = 0;
 		while(t < 18000)
-		{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		{	
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->map.tiles.player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE + (TILE / 5));
 			t++;
 		}
@@ -153,7 +154,8 @@ void player_walk_y(t_data *data)
 		data->map.player.y -= 1;
 		t = 0;
 		while(t < 18000)
-		{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		{	
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->map.tiles.r_player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE + (TILE / 5));
 			t++;
 		}
@@ -176,10 +178,11 @@ void player_walk_y(t_data *data)
 		data->map.player.y += 1;
 		t = 0;
 		while(t < 18000)
-		{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		{	
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->map.tiles.player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE - (TILE / 5));
 			t++;
-		}	int	t;
+		}
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 				data->map.tiles.floor, data->map.player.x * TILE, floor * TILE);
 		t = 0;
@@ -199,7 +202,8 @@ void player_walk_y(t_data *data)
 		data->map.player.y += 1;
 		t = 0;
 		while(t < 18000)
-		{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		{	
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->map.tiles.r_player_walk_1, data->map.player.x * TILE, data->map.player.y * TILE - (TILE / 5));
 			t++;
 		}
