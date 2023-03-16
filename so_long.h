@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/14 11:03:26 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:07:03 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,23 @@ typedef struct s_tiles
 	void	*start_2;
 	void	*start_3;
 	void	*start_4;
+	void	*exit_1;
+	void	*exit_2;
+	void	*exit_3;
+	void	*exit_4;
+	void	*exit_5;
+	void	*exit_6;
+	void	*exit_7;
+	void	*atk_1;
+	void	*atk_2;
+	void	*atk_3;
+	void	*atk_4;
+	void	*atk_5;
+	void	*r_atk_1;
+	void	*r_atk_2;
+	void	*r_atk_3;
+	void	*r_atk_4;
+	void	*r_atk_5;
 }	t_tiles;
 
 typedef struct s_map
@@ -96,7 +113,9 @@ typedef struct s_data
 	int		moves;
 	int		loop;
 	int		idle;
-	char	direc;
+	int		finish;
+	int		direc;
+	int		atk;
 }	t_data;
 
 /*---------- VARIABLES ----------*/
@@ -131,5 +150,7 @@ t_data	*generate_data(void);
 void	player_walk_x(t_data *data);
 void	player_walk_y(t_data *data);
 void	start(t_data *data);
+void	exit_anim(t_data *data);
+void	atk(t_data *data);
 
 #endif

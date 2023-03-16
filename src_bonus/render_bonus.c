@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/14 11:01:37 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:06:22 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	handle_keypress(int keysym, t_data *data)
 		move_right(data);
 	if (keysym == XK_Left || keysym == XK_a)
 		move_left(data);
+	if (data->map.gathered == 0 && data->finish == 0)
+	{
+		exit_anim(data);
+		data->finish = 1;
+	}
 	if (data->map.layout[data->map.player.y][data->map.player.x] == 'E')
 	{
 		ft_printf("\033[1;32m🥳 Congrats, you won! 🥳\033[0m\n");

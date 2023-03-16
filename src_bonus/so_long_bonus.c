@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/14 10:53:33 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:06:48 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,40 @@ void	generate_img(t_data *data)
 			"./textures/start_3.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.start_4 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/start_4.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_3.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_4 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_4.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_5 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_5.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_6 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_6.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.exit_7 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/exit_7.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.atk_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/atk_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.atk_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/atk_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.atk_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/atk_3.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.atk_4 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/atk_4.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.atk_5 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/atk_5.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_atk_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_atk_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_atk_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_atk_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_atk_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_atk_3.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_atk_4 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_atk_4.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_atk_5 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_atk_5.xpm", &data->tile.x, &data->tile.y);
 }
 
 t_data	*generate_data(void)
@@ -82,7 +116,9 @@ t_data	*generate_data(void)
 	data->moves = 0;
 	data->loop = 0;
 	data->idle = 0;
+	data->finish = 0;
 	data->direc = 'r';
+	data->atk = 0;
 	data->map.layout = 0;
 	data->map.valid = 0;
 	data->map.lines = 0;

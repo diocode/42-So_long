@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:18:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/14 10:55:13 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:39:13 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	player_idle(t_data *data)
 	return (0);
 }
 
-void player_walk_x(t_data *data)
+void player_walk_x(t_data *data )
 {
 	int	floor;
 	int	t;

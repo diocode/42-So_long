@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:02:19 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/13 13:38:18 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:28:40 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	move_up(t_data *data)
 {
 	if (data->map.layout[data->map.player.y - 1][data->map.player.x] == 'C')
 	{
+		if (data->direc == 'r')
+			data->atk = 'r';
+		else if (data->direc == 'l')
+			data->atk = 'l';
 		data->map.gathered--;
 		data->map.layout[data->map.player.y - 1][data->map.player.x] = '0';
 	}
@@ -30,6 +34,7 @@ void	move_up(t_data *data)
 		else if (data->direc == 'l')
 			data->direc = 'b';
 		player_walk_y(data);
+		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
@@ -39,6 +44,10 @@ void	move_down(t_data *data)
 {
 	if (data->map.layout[data->map.player.y + 1][data->map.player.x] == 'C')
 	{
+		if (data->direc == 'r')
+			data->atk = 'r';
+		else if (data->direc == 'l')
+			data->atk = 'l';
 		data->map.gathered--;
 		data->map.layout[data->map.player.y + 1][data->map.player.x] = '0';
 	}
@@ -52,6 +61,7 @@ void	move_down(t_data *data)
 		if (data->direc == 'l')
 			data->direc = 'z';
 		player_walk_y(data);
+		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
@@ -59,8 +69,13 @@ void	move_down(t_data *data)
 
 void	move_right(t_data *data)
 {
+		data->direc = 'r';
 	if (data->map.layout[data->map.player.y][data->map.player.x + 1] == 'C')
 	{
+		if (data->direc == 'r')
+			data->atk = 'r';
+		else if (data->direc == 'l')
+			data->atk = 'l';
 		data->map.gathered--;
 		data->map.layout[data->map.player.y][data->map.player.x + 1] = '0';
 	}	
@@ -69,8 +84,8 @@ void	move_right(t_data *data)
 		return ;
 	else
 	{
-		data->direc = 'r';
 		player_walk_x(data);
+		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);	
 	}
@@ -78,8 +93,13 @@ void	move_right(t_data *data)
 
 void	move_left(t_data *data)
 {		
+	data->direc = 'l';
 	if (data->map.layout[data->map.player.y][data->map.player.x - 1] == 'C')
 	{
+		if (data->direc == 'r')
+			data->atk = 'r';
+		else if (data->direc == 'l')
+			data->atk = 'l';
 		data->map.gathered--;
 		data->map.layout[data->map.player.y][data->map.player.x - 1] = '0';
 	}	
@@ -88,8 +108,8 @@ void	move_left(t_data *data)
 		return ;
 	else
 	{
-		data->direc = 'l';
 		player_walk_x(data);
+		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
