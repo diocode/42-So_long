@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 16:06:48 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:12:19 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,18 @@ void	generate_img(t_data *data)
 			"./textures/r_atk_4.xpm", &data->tile.x, &data->tile.y);
 	data->map.tiles.r_atk_5 = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/r_atk_5.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.enemy_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/enemy_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.enemy_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/enemy_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.enemy_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/enemy_3.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_enemy_1 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_enemy_1.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_enemy_2 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_enemy_2.xpm", &data->tile.x, &data->tile.y);
+	data->map.tiles.r_enemy_3 = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/r_enemy_3.xpm", &data->tile.x, &data->tile.y);
 }
 
 t_data	*generate_data(void)
@@ -129,6 +141,9 @@ t_data	*generate_data(void)
 	data->map.player.x = 0;
 	data->map.exit.y = 0;
 	data->map.exit.x = 0;
+	data->map.enemies = 0;
+	data->map.enemy_x = 0;
+	data->map.enemy_y = 0;
 
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 14:06:22 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:24:15 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	handle_keypress(int keysym, t_data *data)
 		move_right(data);
 	if (keysym == XK_Left || keysym == XK_a)
 		move_left(data);
+	move_enemy(data);
 	if (data->map.gathered == 0 && data->finish == 0)
 	{
 		exit_anim(data);

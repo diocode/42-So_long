@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 16:07:03 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:13:19 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ typedef struct s_tiles
 	void	*r_atk_3;
 	void	*r_atk_4;
 	void	*r_atk_5;
+	void	*enemy_1;
+	void	*enemy_2;
+	void	*enemy_3;
+	void	*r_enemy_1;
+	void	*r_enemy_2;
+	void	*r_enemy_3;
 }	t_tiles;
 
 typedef struct s_map
@@ -96,6 +102,9 @@ typedef struct s_map
 	int	len;
 	int	collect;
 	int	gathered;
+	int	enemies;
+	int	*enemy_x;
+	int	*enemy_y;
 	t_tiles	tiles;
 	t_point	player;
 	t_point	exit;
@@ -152,5 +161,7 @@ void	player_walk_y(t_data *data);
 void	start(t_data *data);
 void	exit_anim(t_data *data);
 void	atk(t_data *data);
+void	generate_enemies(t_data *data);
+int		move_enemy(t_data *data);
 
 #endif

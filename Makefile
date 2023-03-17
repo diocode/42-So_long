@@ -6,7 +6,7 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/03/14 11:07:53 by digoncal         ###   ########.fr        #
+#    Updated: 2023/03/17 15:17:04 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME_BONUS = so_long_bonus
 SRC = src/so_long.c src/map_check.c src/map_check_utils.c src/render.c src/render_utils.c src/move_player.c 
 OBJ = $(SRC:.c=.o)
 
-SRC_BONUS = src_bonus/so_long_bonus.c src_bonus/map_check_bonus.c src_bonus/map_check_utils_bonus.c src_bonus/render_bonus.c src_bonus/render_utils_bonus.c src_bonus/move_player_bonus.c src_bonus/animate_bonus.c src_bonus/animate_extra_bonus.c
+SRC_BONUS = src_bonus/so_long_bonus.c src_bonus/map_check_bonus.c src_bonus/map_check_utils_bonus.c src_bonus/render_bonus.c src_bonus/render_utils_bonus.c src_bonus/move_player_bonus.c src_bonus/animate_bonus.c src_bonus/animate_extra_bonus.c src_bonus/enemies.c
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 LIBFT = libs/libft/libft.a

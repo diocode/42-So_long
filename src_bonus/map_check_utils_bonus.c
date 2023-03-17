@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/09 15:59:10 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:28:30 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	comp_check_check_check(t_data *data, int start_exit)
 		return (1);
 	if (data->map.collect < 1)
 		return (1);
-	str = "01CEP";
+	str = "01CEPX";
 	y = -1;
 	while (++y < data->map.lines)
 	{
@@ -34,7 +34,7 @@ int	comp_check_check_check(t_data *data, int start_exit)
 			while (str[++i])
 				if (data->map.layout[y][x] == str[i])
 					break ;
-			if (i == 5)
+			if (i == 6)
 				return (1);
 		}
 	}
@@ -48,6 +48,12 @@ int	comp_check_check(t_data *data, int x, int y)
 	start_exit = 0;
 	if (data->map.layout[y][x] == 'C')
 		data->map.collect++;
+	if (data->map.layout[y][x] == 'X')
+	{
+		data->map.enemy_x[data->map.enemies] = x;
+		data->map.enemy_y[data->map.enemies] = y;
+		data->map.enemies++;
+	}
 	if (data->map.layout[y][x] == 'P')
 	{
 		data->map.player.x = x;
@@ -69,6 +75,7 @@ int	comp_check(t_data *data)
 	int	x;
 	int	y;
 
+	generate_enemies(data);
 	data->map.collect = 0;
 	start_exit = 0;
 	y = -1;

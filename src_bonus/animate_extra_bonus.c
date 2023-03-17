@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:46:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 16:08:33 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:17:28 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	exit_anim(t_data *data)
 	
 	t = 0;
 	while(t < 40000)
-	{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+	{	
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 				data->map.tiles.exit_1, data->map.exit.x * TILE, data->map.exit.y * TILE);
 		t++;
 	}
@@ -63,7 +64,8 @@ void	exit_anim(t_data *data)
 	}
 	t = 0;
 	while(t < 40000)
-	{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+	{	
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 				data->map.tiles.exit_3, data->map.exit.x * TILE, data->map.exit.y * TILE);
 		t++;
 	}
@@ -83,7 +85,8 @@ void	exit_anim(t_data *data)
 	}
 	t = 0;
 	while(t < 40000)
-	{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+	{	
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 				data->map.tiles.exit_6, data->map.exit.x * TILE, data->map.exit.y * TILE);
 		t++;
 	}
