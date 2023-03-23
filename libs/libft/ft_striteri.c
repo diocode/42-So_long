@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:58:58 by digoncal          #+#    #+#             */
-/*   Updated: 2022/11/15 12:01:00 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:36:04 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

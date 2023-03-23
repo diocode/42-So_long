@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/17 18:13:19 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:27:47 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 /* ---------- LIBRARIES ---------- */
 
 # include <stdlib.h>
-# include "libs/libft//libft.h"
-# include "libs/minilibx/mlx.h"
+# include "libft.h"
+# include "../libs/minilibx/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
-# include <unistd.h>
+# include <time.h>
 
 /* ---------- STRUCS ---------- */
 
@@ -102,6 +102,7 @@ typedef struct s_map
 	int	len;
 	int	collect;
 	int	gathered;
+	int	zero;
 	int	enemies;
 	int	*enemy_x;
 	int	*enemy_y;
@@ -109,8 +110,6 @@ typedef struct s_map
 	t_point	player;
 	t_point	exit;
 }	t_map;
-
-
 
 typedef struct s_data
 {
@@ -133,6 +132,7 @@ typedef struct s_data
 
 /*---------- FUNCTIONS ----------*/
 
+void	free_data(t_data *data);
 int	render_win(t_data *data);
 int	render_map(t_data *data);
 int	render(t_data *data);
@@ -162,6 +162,12 @@ void	start(t_data *data);
 void	exit_anim(t_data *data);
 void	atk(t_data *data);
 void	generate_enemies(t_data *data);
-int		move_enemy(t_data *data);
+void	move_enemy(t_data *data, int enemies);
+void enemy_up(t_data *data, int enemies);
+void enemy_down(t_data *data, int enemies);
+void enemy_right(t_data *data, int enemies);
+void enemy_left(t_data *data, int enemies);
+void	render_enemies(t_data *data);
+void	walk_right(t_data *data);
 
 #endif

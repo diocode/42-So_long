@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/17 17:12:19 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:59 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	generate_img(t_data *data)
 {
@@ -118,6 +118,7 @@ t_data	*generate_data(void)
 {
 	t_data	*data;
 	
+	srand(time(NULL));
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (data);
@@ -137,11 +138,11 @@ t_data	*generate_data(void)
 	data->map.len = 0;
 	data->map.collect = 0;
 	data->map.gathered = 0;
+	data->map.gathered = 0;
 	data->map.player.y = 0;
 	data->map.player.x = 0;
 	data->map.exit.y = 0;
 	data->map.exit.x = 0;
-	data->map.enemies = 0;
 	data->map.enemy_x = 0;
 	data->map.enemy_y = 0;
 
@@ -171,6 +172,7 @@ int main(int ac, char **av)
 	map_check(av[1], data);
 	if (data->map.valid != 0 || !data->map.layout)
 		return 1;
+	generate_enemies(data);
 	render(data);
 	return (0);
 }

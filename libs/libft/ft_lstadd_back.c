@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:27:44 by digoncal          #+#    #+#             */
-/*   Updated: 2022/11/15 11:40:02 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:34:47 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {

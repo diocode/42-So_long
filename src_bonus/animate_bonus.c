@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:18:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 15:39:13 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:20 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	player_idle(t_data *data)
 {
@@ -72,25 +72,7 @@ void player_walk_x(t_data *data )
 	floor = data->map.player.x;
 	if (data->direc == 'r')
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->map.tiles.floor, floor * TILE, data->map.player.y * TILE);
-		data->map.player.x += 1;
-		t = 0;
-		while(t < 18000)
-		{	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->map.tiles.player_walk_1, data->map.player.x * TILE - (TILE / 5), data->map.player.y * TILE);
-			t++;
-		}
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->map.tiles.floor, floor * TILE, data->map.player.y * TILE);
-		t = 0;
-		while(t < 18000)
-		{
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->map.tiles.player_walk_2, data->map.player.x * TILE, data->map.player.y * TILE);
-			t++;
-		}
-				
+		walk_right(data);
 	}
 	if (data->direc == 'l')
 	{
@@ -217,4 +199,23 @@ void player_walk_y(t_data *data)
 			t++;
 		}	
 	}
-}	
+}
+
+void	walk_right(t_data *data)
+{
+	int	floor;
+
+	floor = data->map.player.x;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.floor, floor * TILE, data->map.player.y * TILE);
+	data->map.player.x += 1;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.player_walk_1, data->map.player.x * TILE - (TILE / 5), data->map.player.y * TILE);
+	usleep(40000);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.player_walk_2, data->map.player.x * TILE, data->map.player.y * TILE);
+	usleep(40000);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->map.tiles.floor, floor * TILE, data->map.player.y * TILE);
+	usleep(40000);
+}

@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/17 17:28:30 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:45 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	comp_check_check_check(t_data *data, int start_exit)
 {
@@ -23,7 +23,7 @@ int	comp_check_check_check(t_data *data, int start_exit)
 		return (1);
 	if (data->map.collect < 1)
 		return (1);
-	str = "01CEPX";
+	str = "01CEP";
 	y = -1;
 	while (++y < data->map.lines)
 	{
@@ -34,7 +34,7 @@ int	comp_check_check_check(t_data *data, int start_exit)
 			while (str[++i])
 				if (data->map.layout[y][x] == str[i])
 					break ;
-			if (i == 6)
+			if (i == 5)
 				return (1);
 		}
 	}
@@ -48,12 +48,6 @@ int	comp_check_check(t_data *data, int x, int y)
 	start_exit = 0;
 	if (data->map.layout[y][x] == 'C')
 		data->map.collect++;
-	if (data->map.layout[y][x] == 'X')
-	{
-		data->map.enemy_x[data->map.enemies] = x;
-		data->map.enemy_y[data->map.enemies] = y;
-		data->map.enemies++;
-	}
 	if (data->map.layout[y][x] == 'P')
 	{
 		data->map.player.x = x;
@@ -75,7 +69,6 @@ int	comp_check(t_data *data)
 	int	x;
 	int	y;
 
-	generate_enemies(data);
 	data->map.collect = 0;
 	start_exit = 0;
 	y = -1;

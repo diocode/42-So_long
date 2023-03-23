@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:02:19 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/16 15:28:40 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:50 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	move_up(t_data *data)
 {

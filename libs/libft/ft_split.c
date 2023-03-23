@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: digoncal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:21:23 by digoncal          #+#    #+#             */
-/*   Updated: 2022/11/15 11:56:56 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:35:55 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
+#include "../../includes/libft.h"
 
 static int	ft_words(char const *s, char c)
 {

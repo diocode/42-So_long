@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/09 15:59:03 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:41 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	strlen_solong(char	*str)
 {

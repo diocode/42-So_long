@@ -6,11 +6,11 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/17 18:29:40 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:25:55 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	render_wall_corner(t_data *data, int y, int x)
 {

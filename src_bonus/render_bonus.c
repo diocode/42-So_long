@@ -6,13 +6,13 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/17 18:24:15 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:27:39 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long_bonus.h"
 
-void	exit_game(t_data *data)
+void	free_data(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	mlx_destroy_display(data->mlx_ptr);
@@ -28,6 +28,8 @@ int	close_win(void)
 
 int	handle_keypress(int keysym, t_data *data)
 {
+	int	enemies;
+	
 	if (keysym == XK_Escape)
 		exit(0);
 	if (keysym == XK_Up || keysym == XK_w)
@@ -38,7 +40,6 @@ int	handle_keypress(int keysym, t_data *data)
 		move_right(data);
 	if (keysym == XK_Left || keysym == XK_a)
 		move_left(data);
-	move_enemy(data);
 	if (data->map.gathered == 0 && data->finish == 0)
 	{
 		exit_anim(data);
@@ -47,8 +48,11 @@ int	handle_keypress(int keysym, t_data *data)
 	if (data->map.layout[data->map.player.y][data->map.player.x] == 'E')
 	{
 		ft_printf("\033[1;32m🥳 Congrats, you won! 🥳\033[0m\n");
-		exit_game(data);	
+		free_data(data);	
 	}
+	enemies = data->map.enemies;
+	while (--enemies >= 0)
+		move_enemy(data, enemies);
 	return (0);
 }
 
@@ -59,6 +63,7 @@ int	render(t_data *data)
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &close_win, NULL);
 	mlx_loop_hook(data->mlx_ptr, &player_idle, data);
 	render_map(data);
+	render_enemies(data);
 	start(data);
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_display(data->mlx_ptr);
