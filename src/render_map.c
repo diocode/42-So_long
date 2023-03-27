@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:45:24 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:27:28 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,5 @@ int	render_map(t_data *data)
 				render_tile(data, y, x);
 		}
 	}
-	return (0);
-}
-
-int	render_win(t_data *data)
-{
-	int	width;
-	int	height;
-
-	width = data->map->len * SIZE;
-	height = data->map->lines * SIZE;
-	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "so_long");
-	if (!data->win_ptr)
-	{
-		free(data->win_ptr);
-		return (1);
-	}
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, height, width);
-	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-			&data->img.line_len, &data->img.endian);
 	return (0);
 }

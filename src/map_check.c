@@ -6,72 +6,76 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:16:09 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:52:39 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	strlen_solong(char	*str)
-{
-	int	i;
+int	wall_check(t_data *data)
+{	
+	int	y;
+	int	x;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] && str [i] != '\n')
-		i++;
-	return (i);
-}
-
-char	**file_to_map(char *file)
-{
-	int		lines;
-	int		fd;
-	int		i;
-	char	*gnl;
-	char	**map;
-
-	fd = open(file, O_RDONLY);
-	map = 0;
-	if (fd < 0)
-		return (map);
-	lines = 0;
-	gnl = get_next_line(fd);
-	while (gnl && lines++ >= 0)
-		gnl = get_next_line(fd);
-	close(fd);
-	map = malloc(sizeof(t_map) * lines);
-	if (!map)
-		return (0);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (map);
-	i = -1;
-	while (i++ < lines)
-		map[i] = get_next_line(fd);
-	close(fd);
-	return (map);
-}
-
-void	fill(char **layout_cpy, t_data *data, int x, int y)
-{
-	if (x < 0 || y < 0 || x >= data->map->len || y >= data->map->lines)
-		return ;
-	if (layout_cpy[y][x] == 'W' || layout_cpy[y][x] == 'E'
-		|| layout_cpy[y][x] == '1' || layout_cpy[y][x] == 'G')
-		return ;
-	if (layout_cpy[y][x] == 'C')
-	{	
-		layout_cpy[y][x] = 'G';
-		data->map->gathered++;
+	y = -1;
+	while (++y < data->map->lines)
+	{
+		x = -1;
+		if (y == 0 || y == data->map->lines - 1)
+		{
+			while (data->map->layout[y][++x] != '\n'
+				&& data->map->layout[y][x] != '\0')
+			{
+				if (data->map->layout[y][x] != '1')
+					return (1);
+			}
+		}
+		else
+		{
+			if (data->map->layout[y][0] != '1'
+				|| data->map->layout[y]
+					[ft_strlen(data->map->layout[y]) - 2] != '1')
+				return (1);
+		}
 	}
-	else
-		layout_cpy[y][x] = 'W';
-	fill(layout_cpy, data, x - 1, y);
-	fill(layout_cpy, data, x + 1, y);
-	fill(layout_cpy, data, x, y - 1);
-	fill(layout_cpy, data, x, y + 1);
+	return (0);
+}
+
+int	dimension_check(t_data *data)
+{
+	int	len;
+	int	x;
+
+	data->map->len = strlen_solong(data->map->layout[0]);
+	len = 0;
+	x = 1;
+	while (data->map->layout[x])
+	{
+		len = strlen_solong(data->map->layout[x]);
+		if (len == data->map->len)
+			x++;
+		else
+			return (1);
+	}
+	return (0);
+}
+
+int	comp1_check(t_data *data)
+{
+	int	start_exit;
+	int	x;
+	int	y;
+
+	data->map->collect = 0;
+	start_exit = 0;
+	y = -1;
+	while (data->map->layout[++y])
+	{
+		x = -1;
+		while (data->map->layout[y][++x])
+			start_exit += comp2_check(data, x, y);
+	}
+	return (comp3_check(data, start_exit));
 }
 
 int	path_check(char *file, t_data *data)
@@ -104,12 +108,12 @@ void	map_check(char *file, t_data *data)
 	while (data->map->layout[data->map->lines])
 		data->map->lines++;
 	data->map->valid = dimension_check(data) + wall_check(data);
-	data->map->valid += comp_check(data) + path_check(file, data);
+	data->map->valid += comp1_check(data) + path_check(file, data);
 	if (data->map->valid == 0)
 		return ;
 	else
 	{
-		ft_printf("Error\n\033[1;31mInvalid Map\033[0m\n");
+		ft_printf("\033[1;31mError:\033[0m Invalid Map\n");
 		return ;
 	}
 	return ;

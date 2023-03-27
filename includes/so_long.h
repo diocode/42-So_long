@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:32:54 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:41:12 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	render_map(t_data *data);
 int	render(t_data *data);
 int	dimension_check(t_data *data);
 int	wall_check(t_data *data);
-int	comp_check(t_data *data);
-int	comp_check_check(t_data *data, int x, int y);
-int	comp_check_check_check(t_data *data, int start_exit);
+int	comp1_check(t_data *data);
+int	comp2_check(t_data *data, int x, int y);
+int	comp3_check(t_data *data, int start_exit);
 int	path_check(char *file, t_data *data);
 int	strlen_solong(char *str);
 int	free_game(t_data *data);
@@ -95,6 +95,11 @@ void	free_map(t_map *map);
 void	free_tiles(t_data *data);
 char	**file_to_map(char *file);
 t_data	*init_data(void);
+int	handle_keypress(int keysym, t_data *data);
+t_data	*init(void);
+int	ft_quit(t_data *data);
+void	free_img(t_data *data);
+void	init_null(t_data *data);
 
 
 #endif

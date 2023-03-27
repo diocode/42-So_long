@@ -6,11 +6,17 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:46:33 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:17:45 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	ft_quit(t_data *data)
+{
+	free_game(data);
+	exit(0);
+}
 
 void	free_map(t_map *map)
 {
@@ -52,5 +58,6 @@ int	free_game(t_data *data)
 	if (data->map)
 		free_map(data->map);
 	free(data->mlx_ptr);
+	free(data);
 	return (0);
 }

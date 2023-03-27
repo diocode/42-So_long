@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:43:00 by digoncal         ###   ########.fr       */
+/*   Created: 2023/03/27 11:31:57 by digoncal          #+#    #+#             */
+/*   Updated: 2023/03/27 15:40:33 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,24 @@ void	init_img2(t_data *data)
 			"./textures/collect_idle_1.xpm", &data->tile.x, &data->tile.y);
 }
 
+void	init_null(t_data *data)
+{
+	data->mlx_ptr = 0;
+	data->win_ptr = 0;
+	data->img.mlx_img = 0;
+	data->moves = 0;
+	data->map->layout = 0;
+	data->map->valid = 0;
+	data->map->lines = 0;
+	data->map->len = 0;
+	data->map->collect = 0;
+	data->map->gathered = 0;
+	data->map->player.y = 0;
+	data->map->player.x = 0;
+	data->map->exit.y = 0;
+	data->map->exit.x = 0;
+}
+
 t_data	*init_data(void)
 {
 	t_data	*data;
@@ -65,51 +83,29 @@ t_data	*init_data(void)
 		free_game(data);
 		return (data);
 	}
-	data->mlx_ptr = 0;
-	data->win_ptr = 0;
 	data->tile.y = SIZE;
 	data->tile.x = SIZE;
-	data->moves = 0;
-	data->map->layout = 0;
-	data->map->valid = 0;
-	data->map->lines = 0;
-	data->map->len = 0;
-	data->map->collect = 0;
-	data->map->gathered = 0;
-	data->map->player.y = 0;
-	data->map->player.x = 0;
-	data->map->exit.y = 0;
-	data->map->exit.x = 0;
+	init_null(data);
 	return (data);
 }
 
-int	file_check(char *str)
-{
-	char	*ber;
-
-	str = ft_strrchr(str, '.');
-	ber = ".ber";
-	return (ft_strncmp(str, ber, 4));
-}
-
-int	main(int ac, char **av)
+t_data	*init(void)
 {
 	t_data	*data;
 
-	if (ac != 2 || file_check(av[1]) != 0)
-		return (1);
 	data = init_data();
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-		return (1);
-	init_img1(data);
-	init_img2(data);
-	map_check(av[1], data);
-	if (data->map->valid != 0 || !data->map->layout)
+	if (!data)
 	{
 		free_game(data);
-		return (1);
+		return (NULL);
 	}
-	render(data);
-	return (0);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	{
+		free_game(data);
+		return (NULL);
+	}
+	init_img1(data);
+	init_img2(data);
+	return (data);
 }

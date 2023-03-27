@@ -6,22 +6,20 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 15:38:46 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:33:11 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	comp_check_check_check(t_data *data, int start_exit)
+int	comp3_check(t_data *data, int start_exit)
 {
 	int		i;
 	int		x;
 	int		y;
 	char	*str;
 
-	if (start_exit != 2)
-		return (1);
-	if (data->map->collect < 1)
+	if (start_exit != 2 || data->map->collect < 1)
 		return (1);
 	str = "01CEP";
 	y = -1;
@@ -42,7 +40,7 @@ int	comp_check_check_check(t_data *data, int start_exit)
 	return (0);
 }
 
-int	comp_check_check(t_data *data, int x, int y)
+int	comp2_check(t_data *data, int x, int y)
 {
 	int	start_exit;
 
@@ -64,70 +62,63 @@ int	comp_check_check(t_data *data, int x, int y)
 	return (start_exit);
 }
 
-int	comp_check(t_data *data)
+int	strlen_solong(char	*str)
 {
-	int	start_exit;
-	int	x;
-	int	y;
+	int	i;
 
-	data->map->collect = 0;
-	start_exit = 0;
-	y = -1;
-	while (data->map->layout[++y])
-	{
-		x = -1;
-		while (data->map->layout[y][++x])
-			start_exit += comp_check_check(data, x, y);
-	}
-	return (comp_check_check_check(data, start_exit));
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] && str [i] != '\n')
+		i++;
+	return (i);
 }
 
-int	wall_check(t_data *data)
-{	
-	int	y;
-	int	x;
+char	**file_to_map(char *file)
+{
+	int		lines;
+	int		fd;
+	int		i;
+	char	*gnl;
+	char	**map;
 
-	y = 0;
-	while (y < data->map->lines)
-	{
-		x = -1;
-		if (y == 0 || y == data->map->lines - 1)
-		{
-			while (data->map->layout[y][++x] != '\n'
-				&& data->map->layout[y][x] != '\0')
-			{
-				if (data->map->layout[y][x] != '1')
-					return (1);
-			}
-			y++;
-		}
-		else
-		{
-			if (data->map->layout[y][0] != '1'
-				|| data->map->layout[y]
-					[ft_strlen(data->map->layout[y]) - 2] != '1')
-				return (1);
-			y++;
-		}
-	}
-	return (0);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	lines = 0;
+	gnl = get_next_line(fd);
+	while (gnl && lines++ >= 0)
+		gnl = get_next_line(fd);
+	close(fd);
+	map = malloc(sizeof(t_map) * lines);
+	if (!map)
+		return (NULL);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	i = -1;
+	while (i++ < lines)
+		map[i] = get_next_line(fd);
+	close(fd);
+	return (map);
 }
 
-int	dimension_check(t_data *data)
+void	fill(char **layout_cpy, t_data *data, int x, int y)
 {
-	int	len;
-	int	x;
-
-	data->map->len = strlen_solong(data->map->layout[0]);
-	len = 0;
-	x = 1;
-	while (data->map->layout[x])
-	{
-		len = strlen_solong(data->map->layout[x]);
-		if (len == data->map->len)
-			x++;
-		else
-			return (1);
+	if (x < 0 || y < 0 || x >= data->map->len || y >= data->map->lines)
+		return ;
+	if (layout_cpy[y][x] == 'W' || layout_cpy[y][x] == 'E'
+		|| layout_cpy[y][x] == '1' || layout_cpy[y][x] == 'G')
+		return ;
+	if (layout_cpy[y][x] == 'C')
+	{	
+		layout_cpy[y][x] = 'G';
+		data->map->gathered++;
 	}
-	return (0);
+	else
+		layout_cpy[y][x] = 'W';
+	fill(layout_cpy, data, x - 1, y);
+	fill(layout_cpy, data, x + 1, y);
+	fill(layout_cpy, data, x, y - 1);
+	fill(layout_cpy, data, x, y + 1);
 }
