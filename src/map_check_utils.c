@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 15:33:11 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/28 00:45:58 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,44 @@ int	strlen_solong(char	*str)
 	return (i);
 }
 
-char	**file_to_map(char *file)
+int	map_lines(char *file)
 {
 	int		lines;
 	int		fd;
-	int		i;
 	char	*gnl;
-	char	**map;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (0);
 	lines = 0;
 	gnl = get_next_line(fd);
 	while (gnl && lines++ >= 0)
 		gnl = get_next_line(fd);
 	close(fd);
-	map = malloc(sizeof(t_map) * lines);
+	return (lines);
+}
+
+char	**file_to_map(char *file)
+{
+	char	**map;
+	int		lines;
+	int		fd;
+	int		i;
+
+	lines = map_lines(file);
+	map = ft_calloc(lines + 1, sizeof(char *));
 	if (!map)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
 	i = -1;
-	while (i++ < lines)
+	while (++i < lines)
+	{
 		map[i] = get_next_line(fd);
+		if (!map[i])
+			return (NULL);
+	}
 	close(fd);
 	return (map);
 }

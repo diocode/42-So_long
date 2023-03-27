@@ -6,7 +6,7 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/03/27 15:27:00 by digoncal         ###   ########.fr        #
+#    Updated: 2023/03/27 21:49:46 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
-
 
 SRC = src/main.c src/map_check.c src/map_check_utils.c src/render_map.c src/move_player.c src/free.c src/init.c
 OBJ = $(SRC:.c=.o)

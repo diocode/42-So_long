@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 15:30:09 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/28 00:49:59 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	file_check(char *str)
 	char	*ber;
 
 	str = ft_strrchr(str, '.');
+	if (!str)
+	{
+		ft_printf("\033[1;31mError:\033[0m Invalid File\n");
+		return (1);
+	}
 	ber = ".ber";
 	if (ft_strncmp(str, ber, 4) != 0)
 	{

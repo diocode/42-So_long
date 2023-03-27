@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 15:17:45 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:04:35 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	free_map(t_map *map)
 	if (!map)
 		return ;
 	if (!map->layout)
+	{
+		free(map);
 		return ;
+	}
 	i = 0;
 	while (map->layout[i])
 		free(map->layout[i++]);
