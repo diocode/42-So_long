@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 00:45:58 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:38:37 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ int	comp2_check(t_data *data, int x, int y)
 		start_exit++;
 	}
 	return (start_exit);
-}
-
-int	strlen_solong(char	*str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] && str [i] != '\n')
-		i++;
-	return (i);
 }
 
 int	map_lines(char *file)

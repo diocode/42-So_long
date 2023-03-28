@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils_bonus.c                               :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 10:25:55 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:47:27 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,55 +16,55 @@ void	render_wall_corner(t_data *data, int y, int x)
 {
 	if (y == 0 && x == 0)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_u_l, x * TILE, y * TILE);
-	if (y == data->map.lines - 1 && x == 0)
+			data->tiles[1], x * SIZE, y * SIZE);
+	if (y == data->map->lines - 1 && x == 0)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_d_l, x * TILE, y * TILE);
-	if (y == 0 && x == data->map.len - 1)
+			data->tiles[7], x * SIZE, y * SIZE);
+	if (y == 0 && x == data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_u_r, x * TILE, y * TILE);
-	if (y == data->map.lines - 1 && x == data->map.len - 1)
+			data->tiles[2], x * SIZE, y * SIZE);
+	if (y == data->map->lines - 1 && x == data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_d_r, x * TILE, y * TILE);
-	if (y > 0 && y < data->map.lines - 1 && x > 0 && x < data->map.len - 1)
+			data->tiles[8], x * SIZE, y * SIZE);
+	if (y > 0 && y < data->map->lines - 1 && x > 0 && x < data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_m, x * TILE, y * TILE);
+			data->tiles[5], x * SIZE, y * SIZE);
 }
 
 void	render_wall_border(t_data *data, int y, int x)
 {
-	if (y == 0 && x > 0 && x < data->map.len - 1)
+	if (y == 0 && x > 0 && x < data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_u, x * TILE, y * TILE);
-	if (y == data->map.lines - 1 && x > 0 && x < data->map.len - 1)
+			data->tiles[3], x * SIZE, y * SIZE);
+	if (y == data->map->lines - 1 && x > 0 && x < data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_d, x * TILE, y * TILE);
-	if (y > 0 && y < data->map.lines - 1 &&  x == 0)
+			data->tiles[9], x * SIZE, y * SIZE);
+	if (y > 0 && y < data->map->lines - 1 &&  x == 0)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_l, x * TILE, y * TILE);
-	if (y > 0 && y < data->map.lines - 1 && x == data->map.len - 1)
+			data->tiles[6], x * SIZE, y * SIZE);
+	if (y > 0 && y < data->map->lines - 1 && x == data->map->len - 1)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.wall_r, x * TILE, y * TILE);
+			data->tiles[4], x * SIZE, y * SIZE);
 }
 
 void	render_tile(t_data *data, int y, int x)
 {
-	if (data->map.layout[y][x] == '0')
+	if (data->map->layout[y][x] == '0')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.floor, x * TILE, y * TILE);
-	if (data->map.layout[y][x] == 'C')
+			data->tiles[0], x * SIZE, y * SIZE);
+	if (data->map->layout[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.collect, x * TILE, y * TILE);
-	if (data->map.layout[y][x] == 'P')
+			data->tiles[18], x * SIZE, y * SIZE);
+	if (data->map->layout[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.player_idle_1, x * TILE, y * TILE);
-	if (data->map.layout[y][x] == 'E')
+			data->tiles[20], x * SIZE, y * SIZE);
+	if (data->map->layout[y][x] == 'E')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.exit, x * TILE, y * TILE);
-	if (data->map.layout[y][x] == 'X')
+			data->tiles[14], x * SIZE, y * SIZE);
+	if (data->map->layout[y][x] == 'X')
 	{
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->map.tiles.enemy_3, x * TILE, y * TILE);
+			data->tiles[39], x * SIZE, y * SIZE);
 	}
 }
 
@@ -74,12 +74,12 @@ int render_map(t_data *data)
 	int y;
 
 	y = -1;
-	while (data->map.layout[++y])
+	while (data->map->layout[++y])
 	{
 		x = -1;
-		while (data->map.layout[y][++x])
+		while (data->map->layout[y][++x])
 		{
-			if (data->map.layout[y][x] == '1')
+			if (data->map->layout[y][x] == '1')
 			{
 				render_wall_corner(data, y, x);
 				render_wall_border(data, y, x);
@@ -96,8 +96,8 @@ int	render_win(t_data *data)
 	int	width;
 	int	height;
 
-	width = data->map.len * TILE;
-	height = data->map.lines * TILE;
+	width = data->map->len * SIZE;
+	height = data->map->lines * SIZE;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "so_long_bonus");
 	if (!data->win_ptr)
 		{

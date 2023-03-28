@@ -6,14 +6,16 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/03/27 21:49:46 by digoncal         ###   ########.fr        #
+#    Updated: 2023/03/28 19:49:52 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g 
 MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11 
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
+
+-fsanitize=address
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
@@ -21,7 +23,7 @@ NAME_BONUS = so_long_bonus
 SRC = src/main.c src/map_check.c src/map_check_utils.c src/render_map.c src/move_player.c src/free.c src/init.c
 OBJ = $(SRC:.c=.o)
 
-SRC_BONUS = src_bonus/so_long_bonus.c src_bonus/map_check_bonus.c src_bonus/map_check_utils_bonus.c src_bonus/render_bonus.c src_bonus/render_utils_bonus.c src_bonus/move_player_bonus.c src_bonus/animate_bonus.c src_bonus/animate_extra_bonus.c src_bonus/enemies.c
+SRC_BONUS = src_bonus/main.c src_bonus/map_check.c src_bonus/map_check_utils.c src_bonus/render.c src_bonus/render_utils.c src_bonus/move_player.c src_bonus/animate.c src_bonus/animate_extra.c src_bonus/enemies.c src_bonus/init_img.c src_bonus/init.c src_bonus/free.c
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 LIBFT = libs/libft/libft.a

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/23 10:27:39 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:41:19 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ int	handle_keypress(int keysym, t_data *data)
 		move_right(data);
 	if (keysym == XK_Left || keysym == XK_a)
 		move_left(data);
-	if (data->map.gathered == 0 && data->finish == 0)
+	if (data->map->gathered == 0 && data->finish == 0)
 	{
 		exit_anim(data);
 		data->finish = 1;
 	}
-	if (data->map.layout[data->map.player.y][data->map.player.x] == 'E')
+	if (data->map->layout[data->map->player.y][data->map->player.x] == 'E')
 	{
 		ft_printf("\033[1;32m🥳 Congrats, you won! 🥳\033[0m\n");
 		free_data(data);	
 	}
-	enemies = data->map.enemies;
+	enemies = data->map->enemies;
 	while (--enemies >= 0)
 		move_enemy(data, enemies);
 	return (0);
@@ -64,7 +64,7 @@ int	render(t_data *data)
 	mlx_loop_hook(data->mlx_ptr, &player_idle, data);
 	render_map(data);
 	render_enemies(data);
-	start(data);
+	start_anim(data);
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
