@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:46:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 23:05:07 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:52:31 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,24 @@
 
 void	start_anim(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[10], data->map->player.x * SIZE, data->map->player.y * SIZE);
+	put_tile(data, "./textures/start_1.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
 	usleep(600000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[11], data->map->player.x * SIZE, data->map->player.y * SIZE);
+	put_tile(data, "./textures/start_2.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
 	usleep(300000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[12], data->map->player.x * SIZE, data->map->player.y * SIZE);
+	put_tile(data, "./textures/start_3.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
 	usleep(300000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[13], data->map->player.x * SIZE, data->map->player.y * SIZE);
+	put_tile(data, "./textures/start_4.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
 	usleep(300000);
 }
 
 void	exit_anim(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[14], data->map->exit.x * SIZE, data->map->exit.y * SIZE);
-	usleep(500000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[15], data->map->exit.x * SIZE, data->map->exit.y * SIZE);
-	usleep(500000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[16], data->map->exit.x * SIZE, data->map->exit.y * SIZE);
-	usleep(500000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[17], data->map->exit.x * SIZE, data->map->exit.y * SIZE);
-	usleep(500000);
+	put_tile(data, "./textures/exit_2.xpm", data->map->exit.x * SIZE, data->map->exit.y * SIZE);
+	usleep(300000);
+	put_tile(data, "./textures/exit_3.xpm", data->map->exit.x * SIZE, data->map->exit.y * SIZE);
+	usleep(300000);
+	put_tile(data, "./textures/exit_4.xpm", data->map->exit.x * SIZE, data->map->exit.y * SIZE);
+	usleep(300000);
 }
 
 void	atk(t_data *data)
@@ -50,27 +40,25 @@ void	atk(t_data *data)
 		return ;
 	if (data->atk == 'r')
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[32], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[33], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->tiles[34], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
+		put_tile(data, "./textures/atk_1.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/atk_2.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/atk_3.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/atk_4.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(250000);
 	}
 	if (data->atk == 'l')
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[35], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[36], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->tiles[37], data->map->player.x * SIZE, data->map->player.y * SIZE);
-		usleep(300000);
+		put_tile(data, "./textures/r_atk_1.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/r_atk_2.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/r_atk_3.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(170000);
+		put_tile(data, "./textures/r_atk_4.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(250000);
 	}
 	data->atk = 0;
 }

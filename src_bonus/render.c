@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 22:41:19 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:11:03 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int	handle_keypress(int keysym, t_data *data)
 		free_data(data);	
 	}
 	enemies = data->map->enemies;
-	while (--enemies >= 0)
+	if (data->moves != 0)
+	{
+		while (--enemies >= 0)
 		move_enemy(data, enemies);
+	}
 	return (0);
 }
 

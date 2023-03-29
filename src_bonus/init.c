@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:48:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 22:32:24 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:30:28 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,6 @@ t_data	*init_data(void)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (data);
-	data->tiles = malloc(NUM_TILES * sizeof(void *));
-	if (!data->tiles)
-	{
-		free_game(data);
-		return (data);
-	}
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{
@@ -117,9 +111,5 @@ t_data	*init(void)
 		free_game(data);
 		return (NULL);
 	}
-	init_img1(data);
-	init_img2(data);
-	init_img3(data);
-	init_img4(data);
 	return (data);
 }

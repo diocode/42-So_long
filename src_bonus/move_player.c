@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:02:19 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 23:44:16 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:58:34 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ void	move_up(t_data *data)
 		return ;
 	else
 	{
-		if (data->direc == 'r')
-			data->direc = 'a';
-		else if (data->direc == 'l')
-			data->direc = 'b';
-		player_walk(data);
+		walk_up(data);
 		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
@@ -56,11 +52,7 @@ void	move_down(t_data *data)
 		return ;
 	else
 	{
-		if (data->direc == 'r')
-			data->direc = 'x';
-		if (data->direc == 'l')
-			data->direc = 'z';
-		player_walk(data);
+		walk_down(data);
 		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
@@ -84,7 +76,7 @@ void	move_right(t_data *data)
 		return ;
 	else
 	{
-		player_walk(data);
+		walk_right(data);
 		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);	
@@ -108,7 +100,7 @@ void	move_left(t_data *data)
 		return ;
 	else
 	{
-		player_walk(data);
+		walk_left(data);
 		atk(data);
 		data->moves++;
 		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);

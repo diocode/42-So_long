@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 21:47:27 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:26:42 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,57 +15,39 @@
 void	render_wall_corner(t_data *data, int y, int x)
 {
 	if (y == 0 && x == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[1], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_u_l.xpm", x * SIZE, y * SIZE);
 	if (y == data->map->lines - 1 && x == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[7], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_d_l.xpm", x * SIZE, y * SIZE);
 	if (y == 0 && x == data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[2], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_u_r.xpm", x * SIZE, y * SIZE);
 	if (y == data->map->lines - 1 && x == data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[8], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_d_r.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < data->map->lines - 1 && x > 0 && x < data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[5], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_m.xpm", x * SIZE, y * SIZE);
 }
 
 void	render_wall_border(t_data *data, int y, int x)
 {
 	if (y == 0 && x > 0 && x < data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[3], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_u.xpm", x * SIZE, y * SIZE);
 	if (y == data->map->lines - 1 && x > 0 && x < data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[9], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_d.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < data->map->lines - 1 &&  x == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[6], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_l.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < data->map->lines - 1 && x == data->map->len - 1)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[4], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/wall_r.xpm", x * SIZE, y * SIZE);
 }
 
 void	render_tile(t_data *data, int y, int x)
 {
 	if (data->map->layout[y][x] == '0')
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[0], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/floor.xpm", x * SIZE, y * SIZE);
 	if (data->map->layout[y][x] == 'C')
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[18], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/collect_idle_1.xpm", x * SIZE, y * SIZE);
 	if (data->map->layout[y][x] == 'P')
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[20], x * SIZE, y * SIZE);
+		put_tile(data, "./textures/player_idle_1.xpm", x * SIZE, y * SIZE);
 	if (data->map->layout[y][x] == 'E')
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[14], x * SIZE, y * SIZE);
-	if (data->map->layout[y][x] == 'X')
-	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->tiles[39], x * SIZE, y * SIZE);
-	}
+		put_tile(data, "./textures/exit_1.xpm", x * SIZE, y * SIZE);
 }
 
 int render_map(t_data *data)

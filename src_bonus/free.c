@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 23:04:35 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:29:46 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,10 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-void	free_tiles(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < NUM_TILES)
-		mlx_destroy_image(data->mlx_ptr, data->tiles[i++]);
-	free(data->tiles);
-}
-
 int	free_game(t_data *data)
 {
 	if (!data)
 		return (0);
-	if (data->tiles)
-		free_tiles(data);
 	if (data->img.mlx_img)
 		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	if (data->win_ptr)
