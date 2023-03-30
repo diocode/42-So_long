@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:26:42 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:54:39 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ void	render_tile(t_data *data, int y, int x)
 		put_tile(data, "./textures/exit_1.xpm", x * SIZE, y * SIZE);
 }
 
+void	render_nbr(t_data *data)
+{
+	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE + 32, data->map->lines * SIZE);
+	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE, data->map->lines * SIZE);
+	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE - 32, data->map->lines * SIZE);
+}
+
 int render_map(t_data *data)
 {
 	int x;
@@ -70,6 +77,7 @@ int render_map(t_data *data)
 				render_tile(data, y, x);
 		}
 	}
+	render_nbr(data);
 	return (0);
 }
 
@@ -79,7 +87,7 @@ int	render_win(t_data *data)
 	int	height;
 
 	width = data->map->len * SIZE;
-	height = data->map->lines * SIZE;
+	height = (data->map->lines + 1) * SIZE;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "so_long_bonus");
 	if (!data->win_ptr)
 		{

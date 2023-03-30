@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:29:46 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:26:13 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	free_game(t_data *data)
 {
 	if (!data)
 		return (0);
-	if (data->img.mlx_img)
-		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+	//if (data->img.mlx_img)
+	//	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)

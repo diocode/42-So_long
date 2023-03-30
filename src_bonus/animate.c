@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:18:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:51:43 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:33:25 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	player_idle(t_data *data)
 
 	x = data->map->player.x;
 	y = data->map->player.y;
-	if (data->loop < 20000)
+	if (data->loop < 5000)
 	{
 		data->loop++;
 		return (0);
@@ -127,13 +127,15 @@ void	walk_down(t_data *data)
 
 void    put_tile(t_data *data, char *tile, int x, int y)
 {
-    if (data->img.mlx_img)
+	/*if (data->img.mlx_img)
     {
         mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
         data->img.mlx_img = 0;
-    }
+    }*/
     data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr,
 		tile, &data->tile.x, &data->tile.y);
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img.mlx_img, x, y);
+	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+        data->img.mlx_img = 0;
 }

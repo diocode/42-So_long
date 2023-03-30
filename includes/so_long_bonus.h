@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:59:11 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:42:33 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_data
 
 /*---------- FUNCTIONS ----------*/
 
-void	free_data(t_data *data);
 int	render_win(t_data *data);
 int	render_map(t_data *data);
 int	render(t_data *data);
@@ -125,5 +124,8 @@ int	ft_quit(t_data *data);
 
 void    put_tile(t_data *data, char *tile, int x, int y);
 void	kill_player(t_data *data);
+
+void	render_moves_nbr(t_data	*data);
+void	render_nbr(t_data *data);
 
 #endif

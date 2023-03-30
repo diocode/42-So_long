@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:48:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:30:28 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:11:24 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_enemy(t_data *data)
 	data->map->enemy_x = ft_calloc(data->map->enemies, sizeof(int));
 	data->map->enemy_y = ft_calloc(data->map->enemies, sizeof(int));
 	if (!data->map->enemy_x || !data->map->enemy_y)
-		free_data(data);
+		free_game(data);
 	enemies = data->map->enemies;
 	while (enemies >= 0)
 	{

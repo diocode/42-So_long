@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:16:18 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 15:59:23 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:17:57 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void move_enemy(t_data *data, int enemies)
 		data->map->layout[data->map->enemy_y[enemies]][data->map->enemy_x[enemies]] = '0';
 		enemy_left(data, enemies);
 		data->map->layout[data->map->enemy_y[enemies]][data->map->enemy_x[enemies]] = 'X';
-	}	
+	}
+	if (data->map->enemy_x[enemies] == data->map->player.x && data->map->enemy_y[enemies] == data->map->player.y)
+			kill_player(data);	
 }
 
 void	render_enemies(t_data *data)
@@ -83,10 +85,9 @@ void enemy_up(t_data *data, int enemies)
 	data->map->enemy_y[enemies] -= 1;
 	put_tile(data, "./textures/enemy_1.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE + (SIZE / 2));
 	put_tile(data, "./textures/floor.xpm", data->map->enemy_x[enemies] * SIZE, floor * SIZE);
-	usleep(15000);
-	put_tile(data, "./textures/enemy_2.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
+	usleep(50000);
+	put_tile(data, "./textures/enemy_3.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", data->map->enemy_x[enemies] * SIZE, floor * SIZE);
-	usleep(15000);
 }
 
 void enemy_down(t_data *data, int enemies)
@@ -96,12 +97,11 @@ void enemy_down(t_data *data, int enemies)
 	floor = data->map->enemy_y[enemies];
 	put_tile(data, "./textures/floor.xpm", data->map->enemy_x[enemies] * SIZE, floor * SIZE);
 	data->map->enemy_y[enemies] += 1;
-	put_tile(data, "./textures/enemy_1.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE - (SIZE / 2));
+	put_tile(data, "./textures/enemy_2.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE - (SIZE / 2));
 	put_tile(data, "./textures/floor.xpm", data->map->enemy_x[enemies] * SIZE, floor * SIZE);
-	usleep(15000);
-	put_tile(data, "./textures/enemy_2.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
+	usleep(50000);
+	put_tile(data, "./textures/enemy_3.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", data->map->enemy_x[enemies] * SIZE, floor * SIZE);
-	usleep(15000);
 }
 
 void enemy_right(t_data *data, int enemies)
@@ -111,12 +111,11 @@ void enemy_right(t_data *data, int enemies)
 	floor = data->map->enemy_x[enemies];
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
 	data->map->enemy_x[enemies] += 1;
-	put_tile(data, "./textures/enemy_1.xpm", data->map->enemy_x[enemies] * SIZE - (SIZE / 2), data->map->enemy_y[enemies] * SIZE);
+	put_tile(data, "./textures/enemy_2.xpm", data->map->enemy_x[enemies] * SIZE - (SIZE / 2), data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
-	usleep(15000);
-	put_tile(data, "./textures/enemy_2.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
+	usleep(50000);
+	put_tile(data, "./textures/enemy_1.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
-	usleep(15000);
 }
 
 void enemy_left(t_data *data, int enemies)
@@ -126,15 +125,33 @@ void enemy_left(t_data *data, int enemies)
 	floor = data->map->enemy_x[enemies];
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
 	data->map->enemy_x[enemies] -= 1;
-	put_tile(data, "./textures/r_enemy_1.xpm", data->map->enemy_x[enemies] * SIZE + (SIZE / 2), data->map->enemy_y[enemies] * SIZE);
+	put_tile(data, "./textures/r_enemy_3.xpm", data->map->enemy_x[enemies] * SIZE + (SIZE / 2), data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
-	usleep(15000);
+	usleep(50000);
 	put_tile(data, "./textures/r_enemy_2.xpm", data->map->enemy_x[enemies] * SIZE, data->map->enemy_y[enemies] * SIZE);
 	put_tile(data, "./textures/floor.xpm", floor * SIZE, data->map->enemy_y[enemies] * SIZE);
-	usleep(15000);
 }
 
 void	kill_player(t_data *data)
 {
-	//(void)
+	if (data->direc == 'r')
+	{
+		put_tile(data, "./textures/player_d_1.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(450000);
+		put_tile(data, "./textures/player_d_2.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(300000);
+		put_tile(data, "./textures/r_player_d_3.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(300000);
+	}
+	if (data->direc == 'l')
+	{
+		put_tile(data, "./textures/r_player_d_1.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(450000);
+		put_tile(data, "./textures/r_player_d_2.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(300000);
+		put_tile(data, "./textures/r_player_d_3.xpm", data->map->player.x * SIZE, data->map->player.y * SIZE);
+		usleep(300000);
+	}
+	ft_printf("\033[1;31m= GAME OVER =\033[0m\n");
+	ft_quit(data);
 }
