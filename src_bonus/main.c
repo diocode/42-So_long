@@ -6,28 +6,39 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 22:33:23 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:24:17 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-int	file_check(char *str)
+int	handle_keypress(int keysym, t_data *data)
 {
-	char	*ber;
+	int	moves;
 
-	str = ft_strrchr(str, '.');
-	if (!str)
+	moves = data->moves;
+	if (keysym == XK_Escape)
+		ft_quit(data);
+	if (keysym == XK_Up || keysym == XK_w)
+		move_up(data);
+	if (keysym == XK_Down || keysym == XK_s)
+		move_down(data);
+	if (keysym == XK_Right || keysym == XK_d)
+		move_right(data);
+	if (keysym == XK_Left || keysym == XK_a)
+		move_left(data);
+	if (data->map->gathered == 0 && data->finish == 0)
 	{
-		ft_printf("\033[1;31mError:\033[0m Invalid File\n");
-		return (1);
+		exit_anim(data);
+		data->finish = 1;
 	}
-	ber = ".ber";
-	if (ft_strncmp(str, ber, 4) != 0)
+	if (data->map->layout[data->map->player.y][data->map->player.x] == 'E')
 	{
-		ft_printf("\033[1;31mError:\033[0m Invalid File\n");
-		return (1);
+		ft_printf("\033[1;32m🥳 Congrats, you won! 🥳\033[0m\n");
+		ft_quit(data);
 	}
+	if (moves < data->moves)
+		enemy_pos(data);
 	return (0);
 }
 
@@ -38,13 +49,23 @@ int main(int ac, char **av)
 	if (ac != 2 || file_check(av[1]) != 0)
 		return (1);
 	data = init();
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	if (!data)
+	{
+		free_game(data);
 		return (1);
+	}
 	map_check(av[1], data);
 	if (data->map->valid != 0 || !data->map->layout)
-		return 1;
-	init_enemy(data);
+	{
+		free_game(data);
+		return (1);
+	}
+	if (init_enemy(data))
+	{
+		free_game(data);
+		return (1);
+	}
 	render(data);
+	free_game(data);
 	return (0);
 }

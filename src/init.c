@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:31:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 23:03:30 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:36:07 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_data	*init_data(void)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (data);
-	data->tiles = malloc(NUM_TILES * sizeof(void *));
+	data->tiles = malloc(13 * sizeof(void *));
 	if (!data->tiles)
 	{
 		free_game(data);

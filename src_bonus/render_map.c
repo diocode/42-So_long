@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
+/*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/30 01:54:39 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/01 14:19:34 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	render_wall_border(t_data *data, int y, int x)
 		put_tile(data, "./textures/wall_r.xpm", x * SIZE, y * SIZE);
 }
 
-void	render_tile(t_data *data, int y, int x)
+void	render_tiles(t_data *data, int y, int x)
 {
 	if (data->map->layout[y][x] == '0')
 		put_tile(data, "./textures/floor.xpm", x * SIZE, y * SIZE);
@@ -50,11 +50,14 @@ void	render_tile(t_data *data, int y, int x)
 		put_tile(data, "./textures/exit_1.xpm", x * SIZE, y * SIZE);
 }
 
-void	render_nbr(t_data *data)
+void	render_moves_nbr(t_data *data)
 {
-	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE + 32, data->map->lines * SIZE);
-	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE, data->map->lines * SIZE);
-	put_tile(data, "./textures/0.xpm", data->map->len / 2 * SIZE - 32, data->map->lines * SIZE);
+	put_tile(data, data->nbr[0], data->map->len / 2 * SIZE + 32,
+			data->map->lines * SIZE);
+	put_tile(data, data->nbr[0], data->map->len / 2 * SIZE,
+			data->map->lines * SIZE);
+	put_tile(data, data->nbr[0], data->map->len / 2 * SIZE - 32,
+			data->map->lines * SIZE);
 }
 
 int render_map(t_data *data)
@@ -74,27 +77,9 @@ int render_map(t_data *data)
 				render_wall_border(data, y, x);
 			}
 			else
-				render_tile(data, y, x);
+				render_tiles(data, y, x);
 		}
 	}
-	render_nbr(data);
-	return (0);
-}
-
-int	render_win(t_data *data)
-{
-	int	width;
-	int	height;
-
-	width = data->map->len * SIZE;
-	height = (data->map->lines + 1) * SIZE;
-	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "so_long_bonus");
-	if (!data->win_ptr)
-		{
-			free(data->win_ptr);
-			return (1);
-		}
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, height, width);
-	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
+	render_moves_nbr(data);
 	return (0);
 }

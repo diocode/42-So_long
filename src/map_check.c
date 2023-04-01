@@ -83,6 +83,8 @@ int	path_check(char *file, t_data *data)
 	char	**layout_cpy;
 
 	layout_cpy = file_to_map(file);
+	if (!layout_cpy)
+		return (1);
 	fill(layout_cpy, data, data->map->player.x, data->map->player.y);
 	if (!data->map->exit.y || !data->map->exit.x)
 		return (1);
@@ -97,6 +99,7 @@ int	path_check(char *file, t_data *data)
 		return (1);
 	if (data->map->collect != data->map->gathered)
 		return (1);
+	free_array(layout_cpy);
 	return (0);
 }
 

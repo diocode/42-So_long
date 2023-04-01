@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/30 01:42:33 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:48:44 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_map
 	int	len;
 	int	collect;
 	int	gathered;
-	int	zero;
 	int	enemies;
 	int	*enemy_x;
 	int	*enemy_y;
@@ -64,68 +63,81 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_map	*map;
-	t_img	img;
-	t_point	tile;
+	char	**nbr;
 	int		moves;
 	int		loop;
 	int		idle;
 	int		finish;
 	int		direc;
 	int		atk;
+	t_map	*map;
+	t_img	img;
+	t_point	tile;
 }	t_data;
 
 /*---------- FUNCTIONS ----------*/
 
-int	render_win(t_data *data);
-int	render_map(t_data *data);
-int	render(t_data *data);
-int	dimension_check(t_data *data);
-int	wall_check(t_data *data);
-int	comp_check(t_data *data);
-int	comp_check_check(t_data *data, int x, int y);
-int	comp_check_check_check(t_data *data, int start_exit);
-int	path_check(char *file, t_data *data);
-int	strlen_solong(char *str);
-void	fill(char **layout_cpy, t_data *data, int x, int y);
+t_data	*init(void);
+t_data	*init_data(void);
+void	init_null(t_data *data);
+void	init_img(t_data *data);
+int		init_nbr(t_data *data);
+int		init_enemy(t_data *data);
+
 void	render_wall_corner(t_data *data, int y, int x);
 void	render_wall_border(t_data *data, int y, int x);
-void	render_tile(t_data *data, int y, int x);
+void	render_tiles(t_data *data, int y, int x);
+void	render_enemies(t_data *data);
+void	render_moves_nbr(t_data *data);
+int		render_win(t_data *data);
+int		render_map(t_data *data);
+int		render(t_data *data);
+
+void	map_check(char *file, t_data *data);
+int		map_lines(char *file);
+int		path_check(char *file, t_data *data);
+int		dimension_check(t_data *data);
+int		wall_check(t_data *data);
+int		comp1_check(t_data *data);
+int		comp2_check(t_data *data, int x, int y);
+int		comp3_check(t_data *data, int start_exit);
+
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_right(t_data *data);
 void	move_left(t_data *data);
-void	map_check(char *file, t_data *data);
-int	player_idle(t_data *data);
-char	**file_to_map(char *file);
-t_data	*init_data(void);
-t_data	*init(void);
 
-void	start_anim(t_data *data);
-void	exit_anim(t_data *data);
-void	atk(t_data *data);
-void	init_enemy(t_data *data);
 void	move_enemy(t_data *data, int enemies);
-void enemy_up(t_data *data, int enemies);
-void enemy_down(t_data *data, int enemies);
-void enemy_right(t_data *data, int enemies);
-void enemy_left(t_data *data, int enemies);
-void	render_enemies(t_data *data);
+void	enemy_up(t_data *data, int enemies);
+void	enemy_down(t_data *data, int enemies);
+void	enemy_right(t_data *data, int enemies);
+void	enemy_left(t_data *data, int enemies);
 
 void	walk_right(t_data *data);
 void	walk_left(t_data *data);
 void	walk_up(t_data *data);
 void	walk_down(t_data *data);
+int		player_idle(t_data *data);
 
-int	free_game(t_data *data);
+void	start_anim(t_data *data);
+void	exit_anim(t_data *data);
+void	atk1(t_data *data);
+void	atk2(t_data *data);
+void	kill_player(t_data *data);
+void	nbr_moves_animation(t_data	*data);
+
 void	free_tiles(t_data *data);
 void	free_map(t_map *map);
-int	ft_quit(t_data *data);
+void	free_array(char **arr);
+int		ft_quit(t_data *data);
+int		free_game(t_data *data);
 
 void    put_tile(t_data *data, char *tile, int x, int y);
-void	kill_player(t_data *data);
-
-void	render_moves_nbr(t_data	*data);
-void	render_nbr(t_data *data);
+void	fill(char **layout_cpy, t_data *data, int x, int y);
+void	enemy_pos(t_data *data);
+char	**file_to_map(char *file);
+int		handle_keypress(int keysym, t_data *data);
+int		strlen_solong(char *str);
+int		file_check(char *str);
 
 #endif

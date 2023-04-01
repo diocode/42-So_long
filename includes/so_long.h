@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 23:00:30 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:42:47 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 /*---------- VARIABLES ----------*/
 
 # define SIZE 64
-# define NUM_TILES 13
 
 /* ---------- STRUCS ---------- */
 
@@ -61,16 +60,16 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**tiles;
+	int		moves;
 	t_map	*map;
 	t_img	img;
 	t_point	tile;
-	int		moves;
 }	t_data;
 
 /*---------- FUNCTIONS ----------*/
 
-t_data	*init_data(void);
 t_data	*init(void);
+t_data	*init_data(void);
 void	init_null(t_data *data);
 void	init_img1(t_data *data);
 void	init_img2(t_data *data);
@@ -83,6 +82,7 @@ int		render_map(t_data *data);
 int		render(t_data *data);
 
 void	map_check(char *file, t_data *data);
+int		map_lines(char *file);
 int		path_check(char *file, t_data *data);
 int		wall_check(t_data *data);
 int		dimension_check(t_data *data);
@@ -97,10 +97,10 @@ void	move_left(t_data *data);
 
 char	**file_to_map(char *file);
 void	fill(char **layout_cpy, t_data *data, int x, int y);
-int		map_lines(char *file);
 int		strlen_solong(char *str);
 int		handle_keypress(int keysym, t_data *data);
 
+void	free_array(char **arr);
 void	free_map(t_map *map);
 void	free_tiles(t_data *data);
 int		ft_quit(t_data *data);

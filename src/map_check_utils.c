@@ -74,7 +74,11 @@ int	map_lines(char *file)
 	lines = 0;
 	gnl = get_next_line(fd);
 	while (gnl && lines++ >= 0)
+	{
+		free(gnl);
 		gnl = get_next_line(fd);
+	}
+	free(gnl);
 	close(fd);
 	return (lines);
 }
@@ -98,7 +102,11 @@ char	**file_to_map(char *file)
 	{
 		map[i] = get_next_line(fd);
 		if (!map[i])
+		{
+			free_array(map);
+			close(fd);
 			return (NULL);
+		}
 	}
 	close(fd);
 	return (map);
