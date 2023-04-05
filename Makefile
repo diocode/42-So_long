@@ -6,12 +6,12 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/04/01 15:26:53 by digoncal         ###   ########.fr        #
+#    Updated: 2023/04/05 13:20:09 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11 
 DEPS = libs/minilibx/mlx.h libs/libft/libft.a
 

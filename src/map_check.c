@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/27 23:59:25 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:21:25 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,20 @@ int	path_check(char *file, t_data *data)
 		return (1);
 	fill(layout_cpy, data, data->map->player.x, data->map->player.y);
 	if (!data->map->exit.y || !data->map->exit.x)
+	{
+		free_array(layout_cpy);
 		return (1);
-	if (layout_cpy[data->map->exit.y - 1][data->map->exit.x] != 'W'
-		&& layout_cpy[data->map->exit.y + 1][data->map->exit.x] != 'W'
-		&& layout_cpy[data->map->exit.y][data->map->exit.x - 1] != 'W'
-		&& layout_cpy[data->map->exit.y][data->map->exit.x + 1] != 'W'
-		&& layout_cpy[data->map->exit.y - 1][data->map->exit.x] != 'G'
-		&& layout_cpy[data->map->exit.y + 1][data->map->exit.x] != 'G'
-		&& layout_cpy[data->map->exit.y][data->map->exit.x - 1] != 'G'
-		&& layout_cpy[data->map->exit.y][data->map->exit.x + 1] != 'G')
+	}
+	if (layout_cpy[data->map->exit.y][data->map->exit.x] != 'W')
+	{
+		free_array(layout_cpy);
 		return (1);
+	}
 	if (data->map->collect != data->map->gathered)
+	{
+		free_array(layout_cpy);
 		return (1);
+	}
 	free_array(layout_cpy);
 	return (0);
 }
@@ -107,7 +109,10 @@ void	map_check(char *file, t_data *data)
 {
 	data->map->layout = file_to_map(file);
 	if (!data->map->layout)
+	{
+		ft_printf("\033[1;31mError:\033[0m Invalid Map\n");
 		return ;
+	}
 	while (data->map->layout[data->map->lines])
 		data->map->lines++;
 	data->map->valid = dimension_check(data) + wall_check(data);

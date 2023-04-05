@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:18:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/31 19:48:08 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:22:57 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	player_idle(t_data *data)
 
 	x = data->map->player.x;
 	y = data->map->player.y;
-	if (data->loop < 5000)
+	if (data->loop < 50000)
 	{
 		data->loop++;
 		return (0);
@@ -66,4 +66,4 @@ int	player_idle(t_data *data)
 	if (data->direc == 'l')
 		player_idle_l(data, x, y);
 	return (0);
-}	
+}

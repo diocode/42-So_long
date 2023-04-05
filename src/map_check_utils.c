@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/29 11:04:45 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:38:36 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	**file_to_map(char *file)
 	while (++i < lines)
 	{
 		map[i] = get_next_line(fd);
-		if (!map[i])
+		if (!map[i] || map[i][0] == '\r')
 		{
 			free_array(map);
 			close(fd);
@@ -116,13 +116,18 @@ void	fill(char **layout_cpy, t_data *data, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= data->map->len || y >= data->map->lines)
 		return ;
-	if (layout_cpy[y][x] == 'W' || layout_cpy[y][x] == 'E'
-		|| layout_cpy[y][x] == '1' || layout_cpy[y][x] == 'G')
+	if (layout_cpy[y][x] == 'W' || layout_cpy[y][x] == '1'
+		|| layout_cpy[y][x] == 'G')
 		return ;
 	if (layout_cpy[y][x] == 'C')
 	{	
 		layout_cpy[y][x] = 'G';
 		data->map->gathered++;
+	}
+	if (layout_cpy[y][x] == 'E')
+	{
+		layout_cpy[y][x] = 'W';
+		return ;
 	}
 	else
 		layout_cpy[y][x] = 'W';

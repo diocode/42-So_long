@@ -6,16 +6,24 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 14:30:25 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:36:58 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	file_check(char *str)
+static int	file_check(char *str)
 {
 	char	*ber;
+	int		fd;
 
+	fd = open(str, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("\033[1;31mError:\033[0m Invalid File\n");
+		close(fd);
+		return (1);
+	}
 	str = ft_strrchr(str, '.');
 	if (!str)
 	{
@@ -28,6 +36,7 @@ int	file_check(char *str)
 		ft_printf("\033[1;31mError:\033[0m Invalid File\n");
 		return (1);
 	}
+	close(fd);
 	return (0);
 }
 
