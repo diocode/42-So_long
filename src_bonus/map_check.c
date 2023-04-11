@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:54:52 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/05 11:35:19 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:57:58 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,29 @@
 int	path_check(char *file, t_data *data)
 {
 	char	**layout_cpy;
+	int		lines;
 
 	layout_cpy = file_to_map(file);
 	if (!layout_cpy)
 		return (1);
+	lines = map_lines(file);
 	fill(layout_cpy, data, data->map->player.x, data->map->player.y);
 	if (!data->map->exit.y || !data->map->exit.x)
 	{
-		free_array(layout_cpy);
+		free_array(layout_cpy, lines);
 		return (1);
 	}
 	if (layout_cpy[data->map->exit.y][data->map->exit.x] != 'W')
 	{
-		free_array(layout_cpy);
+		free_array(layout_cpy, lines);
 		return (1);
 	}
 	if (data->map->collect != data->map->gathered)
 	{
-		free_array(layout_cpy);
+		free_array(layout_cpy, lines);
 		return (1);
 	}
-	free_array(layout_cpy);
+	free_array(layout_cpy, lines);
 	return (0);
 }
 
@@ -48,7 +50,7 @@ int	comp1_check(t_data *data)
 	data->map->collect = 0;
 	start_exit = 0;
 	y = -1;
-	while (data->map->layout[++y])
+	while (++y < data->map->lines)
 	{
 		x = -1;
 		while (data->map->layout[y][++x])
@@ -94,7 +96,7 @@ int	dimension_check(t_data *data)
 	data->map->len = strlen_solong(data->map->layout[0]);
 	len = 0;
 	x = 1;
-	while (data->map->layout[x])
+	while (x < data->map->lines)
 	{
 		len = strlen_solong(data->map->layout[x]);
 		if (len == data->map->len)
@@ -113,8 +115,7 @@ void	map_check(char *file, t_data *data)
 		ft_printf("\033[1;31mError:\033[0m Invalid Map\n");
 		return ;
 	}
-	while (data->map->layout[data->map->lines])
-		data->map->lines++;
+	data->map->lines = map_lines(file);
 	data->map->valid = dimension_check(data) + wall_check(data);
 	data->map->valid += comp1_check(data) + path_check(file, data);
 	if (data->map->valid == 0)

@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:41 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 15:24:18 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:43:31 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	render_enemies(t_data *data)
 {
-	int e;
+	int		e;
 	t_map	*m;
 
 	m = data->map;
@@ -22,8 +22,8 @@ void	render_enemies(t_data *data)
 	while (++e < data->map->enemies)
 	{
 		put_tile(data, "./textures/enemy_1.xpm",
-				m->enemy_x[e] * SIZE, m->enemy_y[e] * SIZE);
-		data->map->layout[m->enemy_y[e]][m->enemy_x[e]] = 'X';
+			m->enemy_x[e] * SIZE, m->enemy_y[e] * SIZE);
+		m->layout[m->enemy_y[e]][m->enemy_x[e]] = 'X';
 	}
 }
 
@@ -35,15 +35,15 @@ int	render_win(t_data *data)
 	width = data->map->len * SIZE;
 	height = (data->map->lines + 1) * SIZE;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, width,
-					height, "so_long_bonus");
+			height, "so_long_bonus");
 	if (!data->win_ptr)
-		{
-			free(data->win_ptr);
-			return (1);
-		}
+	{
+		free(data->win_ptr);
+		return (1);
+	}
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, height, width);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-					&data->img.line_len, &data->img.endian);
+			&data->img.line_len, &data->img.endian);
 	return (0);
 }
 

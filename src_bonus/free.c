@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/31 18:20:51 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:20:23 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_quit(t_data *data)
 	exit(0);
 }
 
-void	free_array(char **arr)
+void	free_array(char **arr, int lines)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (i <= lines)
 		free(arr[i++]);
 	free(arr);
 }

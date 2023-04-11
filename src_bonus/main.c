@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:19:01 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 15:24:17 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:56:49 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int	handle_keypress(int keysym, t_data *data)
 		ft_printf("\033[1;32m🥳 Congrats, you won! 🥳\033[0m\n");
 		ft_quit(data);
 	}
-	if (moves < data->moves)
-		enemy_pos(data);
+	enemy_pos(data, moves);
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	*data;
 

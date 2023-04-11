@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 15:48:44 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:43:50 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include <stdlib.h>
 # include "libft.h"
-# include "../libs/minilibx/mlx.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
@@ -84,11 +84,7 @@ void	init_img(t_data *data);
 int		init_nbr(t_data *data);
 int		init_enemy(t_data *data);
 
-void	render_wall_corner(t_data *data, int y, int x);
-void	render_wall_border(t_data *data, int y, int x);
-void	render_tiles(t_data *data, int y, int x);
 void	render_enemies(t_data *data);
-void	render_moves_nbr(t_data *data);
 int		render_win(t_data *data);
 int		render_map(t_data *data);
 int		render(t_data *data);
@@ -122,19 +118,18 @@ int		player_idle(t_data *data);
 void	start_anim(t_data *data);
 void	exit_anim(t_data *data);
 void	atk1(t_data *data);
-void	atk2(t_data *data);
 void	kill_player(t_data *data);
 void	nbr_moves_animation(t_data	*data);
 
 void	free_tiles(t_data *data);
 void	free_map(t_map *map);
-void	free_array(char **arr);
+void	free_array(char **arr, int lines);
 int		ft_quit(t_data *data);
 int		free_game(t_data *data);
 
 void    put_tile(t_data *data, char *tile, int x, int y);
 void	fill(char **layout_cpy, t_data *data, int x, int y);
-void	enemy_pos(t_data *data);
+void	enemy_pos(t_data *data, int moves);
 char	**file_to_map(char *file);
 int		handle_keypress(int keysym, t_data *data);
 int		strlen_solong(char *str);

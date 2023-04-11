@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:28:47 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 15:36:08 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:33:52 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ int	ft_quit(t_data *data)
 	exit(0);
 }
 
-void	free_array(char **arr)
+void	free_array(char **arr, int lines)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (i <= lines)
 		free(arr[i++]);
 	free(arr);
 }
 
 void	free_map(t_map *map)
 {
-	size_t	i;
+	int	i;
 
 	if (!map)
 		return ;
@@ -40,7 +40,7 @@ void	free_map(t_map *map)
 		return ;
 	}
 	i = 0;
-	while (map->layout[i])
+	while (i < map->lines)
 		free(map->layout[i++]);
 	free(map->layout);
 	free(map);

@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/05 13:20:01 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:25:20 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include <stdlib.h>
 # include "libft.h"
-# include "../libs/minilibx/mlx.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
@@ -100,7 +100,7 @@ void	fill(char **layout_cpy, t_data *data, int x, int y);
 int		strlen_solong(char *str);
 int		handle_keypress(int keysym, t_data *data);
 
-void	free_array(char **arr);
+void	free_array(char **arr, int lines);
 void	free_map(t_map *map);
 void	free_tiles(t_data *data);
 int		ft_quit(t_data *data);

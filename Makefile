@@ -6,14 +6,14 @@
 #    By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 11:01:17 by digoncal          #+#    #+#              #
-#    Updated: 2023/04/05 13:20:09 by digoncal         ###   ########.fr        #
+#    Updated: 2023/04/11 11:52:31 by digoncal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -L ./libs/minilibx -lm -lmlx -Ilmlx -lXext -lX11 
-DEPS = libs/minilibx/mlx.h libs/libft/libft.a
+CFLAGS = -Wall -Wextra -Werror -g
+MLXFLAGS = -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11 
+DEPS = libs/minilibx-linux/mlx.h libs/libft/libft.a
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
@@ -33,7 +33,7 @@ all: deps $(NAME)
 	
 deps:
 	$(MAKE) -C ./libs/libft
-	$(MAKE) -C ./libs/minilibx
+	$(MAKE) -C ./libs/minilibx-linux
 	
 $(NAME): $(OBJ) $(DEPS)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
@@ -45,7 +45,7 @@ $(NAME_BONUS): $(OBJ_BONUS) $(DEPS)
 
 clean:
 	$(MAKE) $@ -C ./libs/libft
-	$(MAKE) $@ -C ./libs/minilibx
+	$(MAKE) $@ -C ./libs/minilibx-linux
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_BONUS)
 
@@ -56,8 +56,8 @@ fclean: clean
 
 re: fclean all
 	$(MAKE) re -C ./libs/libft
-	$(MAKE) re -C ./libs/minilibx
+	$(MAKE) re -C ./libs/minilibx-linux
 
 reb: fclean bonus
 	$(MAKE) re -C ./libs/libft
-	$(MAKE) re -C ./libs/minilibx
+	$(MAKE) re -C ./libs/minilibx-linux

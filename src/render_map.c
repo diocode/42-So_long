@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:49:04 by digoncal          #+#    #+#             */
-/*   Updated: 2023/03/28 13:38:54 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:38:53 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	render_map(t_data *data)
 	int	y;
 
 	y = -1;
-	while (data->map->layout[++y])
+	while (++y < data->map->lines)
 	{
 		x = -1;
 		while (data->map->layout[y][++x])

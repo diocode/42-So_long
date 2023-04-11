@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:02:19 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 14:25:30 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:44:59 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	move_up(t_data *data)
 {
-	t_point p;
+	t_point	p;
 
 	p = data->map->player;
 	if (data->map->layout[p.y - 1][p.x] == 'X')
@@ -42,7 +42,7 @@ void	move_up(t_data *data)
 
 void	move_down(t_data *data)
 {
-	t_point p;
+	t_point	p;
 
 	p = data->map->player;
 	if (data->map->layout[p.y + 1][p.x] == 'X')
@@ -70,7 +70,7 @@ void	move_down(t_data *data)
 
 void	move_right(t_data *data)
 {
-	t_point p;
+	t_point	p;
 
 	p = data->map->player;
 	if (data->map->layout[p.y][p.x + 1] == 'X')
@@ -93,15 +93,15 @@ void	move_right(t_data *data)
 		walk_right(data);
 		atk1(data);
 		nbr_moves_animation(data);
-		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);	
+		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
 }
 
 void	move_left(t_data *data)
 {
-	t_point p;
+	t_point	p;
 
-	p = data->map->player;		
+	p = data->map->player;
 	if (data->map->layout[p.y][p.x - 1] == 'X')
 		kill_player(data);
 	data->direc = 'l';
@@ -122,6 +122,6 @@ void	move_left(t_data *data)
 		walk_left(data);
 		atk1(data);
 		nbr_moves_animation(data);
-		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves); 
+		ft_printf("\033[1;32mMOVES:\033[0m%i\n", data->moves);
 	}
 }

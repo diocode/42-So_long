@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:02:51 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/05 11:38:36 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:32:33 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**file_to_map(char *file)
 		map[i] = get_next_line(fd);
 		if (!map[i] || map[i][0] == '\r')
 		{
-			free_array(map);
+			free_array(map, lines);
 			close(fd);
 			return (NULL);
 		}

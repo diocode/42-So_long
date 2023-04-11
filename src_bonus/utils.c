@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:10:14 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/05 13:20:00 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:55:27 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,40 +52,38 @@ int	file_check(char *str)
 	return (0);
 }
 
-static int  moveability(t_data *data, int x, int y)
+static int	moveability(t_data *data, int x, int y)
 {
-    
-	
 	if (data->map->layout[y + 1][x] == '0')
-        return (0);
-    if (data->map->layout[y - 1][x] == '0')
-        return (0);
-    if (data->map->layout[y][x + 1] == '0')
-        return (0);
-    if (data->map->layout[y][x - 1] == '0')
-        return (0);
-    return (1);
+		return (0);
+	if (data->map->layout[y - 1][x] == '0')
+		return (0);
+	if (data->map->layout[y][x + 1] == '0')
+		return (0);
+	if (data->map->layout[y][x - 1] == '0')
+		return (0);
+	return (1);
 }
 
-void    enemy_pos(t_data *data)
+void	enemy_pos(t_data *data, int moves)
 {
-    int enemies;
-    int stuck;
-	
-    enemies = data->map->enemies;
-    while (--enemies >= 0)
-    {
-        while (moveability(data, data->map->enemy_x[enemies],
-			data->map->enemy_y[enemies]))
+	int	enemies;
+	int	stuck;
+
+	enemies = data->map->enemies;
+	while (--enemies >= 0 && moves < data->moves)
+	{
+		while (moveability(data, data->map->enemy_x[enemies],
+				data->map->enemy_y[enemies]))
 		{
-            enemies--;
+			enemies--;
 			if (enemies < 0)
-			return ;
+				return ;
 		}
-        stuck = data->map->enemy_x[enemies] + data->map->enemy_y[enemies];
-        move_enemy(data, enemies);
-        if (stuck == data->map->enemy_x[enemies]
-            + data->map->enemy_y[enemies])
-            enemies++;
-    }
+		stuck = data->map->enemy_x[enemies] + data->map->enemy_y[enemies];
+		move_enemy(data, enemies);
+		if (stuck == data->map->enemy_x[enemies]
+			+ data->map->enemy_y[enemies])
+			enemies++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:48:57 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 14:56:07 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:49:12 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_null(t_data *data)
 t_data	*init_data(void)
 {
 	t_data	*data;
-	
+
 	srand(time(NULL));
 	data = malloc(sizeof(t_data));
 	if (!data)

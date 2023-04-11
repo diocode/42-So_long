@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:16:18 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/01 13:33:45 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:57:45 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	enemy_move_up(t_data *data, int enemies, int *x, int *y)
 {
-		if (data->map->layout[y[enemies] - 1][x[enemies]] == '1'
-				|| data->map->layout[y[enemies] - 1][x[enemies]] == 'C'
-				|| data->map->layout[y[enemies] - 1][x[enemies]] == 'E'
-				|| data->map->layout[y[enemies] - 1][x[enemies]] == 'X')
-			return ;
-		data->map->layout[y[enemies]][x[enemies]] = '0';
-		enemy_up(data, enemies);
-		data->map->layout[y[enemies]][x[enemies]] = 'X';
+	if (data->map->layout[y[enemies] - 1][x[enemies]] == '1'
+			|| data->map->layout[y[enemies] - 1][x[enemies]] == 'C'
+			|| data->map->layout[y[enemies] - 1][x[enemies]] == 'E'
+			|| data->map->layout[y[enemies] - 1][x[enemies]] == 'X')
+		return ;
+	data->map->layout[y[enemies]][x[enemies]] = '0';
+	enemy_up(data, enemies);
+	data->map->layout[y[enemies]][x[enemies]] = 'X';
 }
 
 static void	enemy_move_down(t_data *data, int enemies, int *x, int *y)
@@ -65,7 +65,7 @@ void	move_enemy(t_data *data, int enemies)
 	int	*x;
 	int	*y;
 	int	n;
-	
+
 	x = data->map->enemy_x;
 	y = data->map->enemy_y;
 	n = (rand() % 4) + 1;
@@ -78,5 +78,5 @@ void	move_enemy(t_data *data, int enemies)
 	if (n == 4)
 		enemy_move_left(data, enemies, x, y);
 	if (x[enemies] == data->map->player.x && y[enemies] == data->map->player.y)
-		kill_player(data);	
+		kill_player(data);
 }
