@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/11 14:43:50 by digoncal         ###   ########.fr       */
+/*   Created: 2023/04/12 16:26:16 by digoncal          #+#    #+#             */
+/*   Updated: 2023/04/12 16:31:44 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 /* ---------- LIBRARIES ---------- */
 
@@ -29,7 +29,7 @@
 
 /* ---------- STRUCS ---------- */
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x;
 	int	y;
@@ -39,22 +39,22 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
-	int	bpp;
-	int	line_len;
-	int	endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_map
 {
 	char	**layout;
-	int	valid;
-	int	lines;
-	int	len;
-	int	collect;
-	int	gathered;
-	int	enemies;
-	int	*enemy_x;
-	int	*enemy_y;
+	int		valid;
+	int		lines;
+	int		len;
+	int		collect;
+	int		gathered;
+	int		enemies;
+	int		*enemy_x;
+	int		*enemy_y;
 	t_point	player;
 	t_point	exit;
 }	t_map;
@@ -127,7 +127,7 @@ void	free_array(char **arr, int lines);
 int		ft_quit(t_data *data);
 int		free_game(t_data *data);
 
-void    put_tile(t_data *data, char *tile, int x, int y);
+void	put_tile(t_data *data, char *tile, int x, int y);
 void	fill(char **layout_cpy, t_data *data, int x, int y);
 void	enemy_pos(t_data *data, int moves);
 char	**file_to_map(char *file);

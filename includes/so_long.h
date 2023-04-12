@@ -6,7 +6,7 @@
 /*   By: digoncal <digoncal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:50:27 by digoncal          #+#    #+#             */
-/*   Updated: 2023/04/11 11:25:20 by digoncal         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:32:14 by digoncal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,29 @@
 
 /* ---------- STRUCS ---------- */
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
-	int	bpp;
-	int	line_len;
-	int	endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_map
 {
 	char	**layout;
-	int	valid;
-	int	lines;
-	int	len;
-	int	collect;
-	int	gathered;
+	int		valid;
+	int		lines;
+	int		len;
+	int		collect;
+	int		gathered;
 	t_point	player;
 	t_point	exit;
 }	t_map;
