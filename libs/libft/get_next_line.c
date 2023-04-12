@@ -47,9 +47,9 @@ static char	*ft_reset_stash(char *stash)
 	char	*str;
 
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != '\n' && stash[i] != '\r')
 		i++;
-	if (!stash[i])
+	if (!stash[i] || stash[i] == '\r')
 	{
 		free(stash);
 		return (NULL);
