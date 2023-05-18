@@ -13,6 +13,12 @@ It aims at teaching students about rendering, sprites, animations, color schemes
 
 <br>
 
+<div align="center">
+  <img src=https://github.com/diocode/so_long/assets/107859177/c0dc45f3-649b-46aa-b83d-90ffe1585932) />
+</div>
+
+<br>
+
 ## HOW TO USE
 1º - To compile so_long you should run `make` or `make bonus` in the terminal.
 
