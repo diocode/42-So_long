@@ -42,7 +42,7 @@ $ git clone git@github.com:diocode/42-So_long.git
 
 #### 2º - Enter the project folder and run `make` or `make bonus`
 ```bash
-$ ./cd 42-So_long.git
+$ ./cd 42-So_long
 $ ./make
 $ ./make bonus
 ```
