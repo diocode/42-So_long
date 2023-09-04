@@ -37,19 +37,25 @@ The project emphasizes the use of MiniLibX, requires a Makefile for compilation,
 #### COMPILATION AND EXECUTION
 #### 1º - Clone the repository
 ```bash
-$ ./git clone git@github.com:diocode/philosophers.git
+$ git clone git@github.com:diocode/42-So_long.git
 ```
 
-#### 2º - Enter the project folder and run `make`
+#### 2º - Enter the project folder and run `make` or `make bonus`
 ```bash
-$ ./cd philosophers
+$ ./cd 42-So_long.git
 $ ./make
+$ ./make bonus
 ```
 
 #### 3º - Launch the program
-> The last argument is optional for the execution of the program.
+> You can use any of the maps inside `maps` folder
+#### Mandatory:
 ```bash
-$ ./philo [n of philos] [time to die] [time to eat] [time to sleep] [n times each philo must eat]
+$ ./so_long [".ber" map file]
+```
+#### Bonus:
+```bash
+$ ./so_long_bonus [".ber" map file]
 ```
 
 <br>
@@ -57,44 +63,41 @@ $ ./philo [n of philos] [time to die] [time to eat] [time to sleep] [n times eac
 #### MAKEFILE COMMANDS
 `make` or `make all` - Compile program **mandatory** files.
 
+`make bonus` - Compile program **bonus** files.
+
 `make clean` - Delete all .o (object files) files.
 
 `make fclean` - Delete all .o (object file) and .a (executable) files.
 
 `make re` - Use rules `fclean` + `all`.
 
+`make reb` - Use rules `fclean` + `bonus`.
+
 #### TIPS
-> Replace the "CFLAGS" in the Makefile file to use fsanitize to track data races and mutex errors:
+- Make sure you have minlibx downloaded.
+- Have X11 lib updated.
+- Use valgrind to check for leaks:
 ```bash
-CFLAGS = -Wall -Wextra -Werror
-```
-```bash
-CFLAGS = -g -Wall -Wextra -Werror -L. -lpthread -g3 -fsanitize=thread -O3 -march=native
+$ valgrind -s ./so_long_bonus [".ber" map file]
 ```
 
 <br>
 
 ## EXAMPLES
- > The performance will change if you use `-fsanitize`, `valgrind` or both together.
- 
-| Example | Expected Result |
-| :-- | :-- |
-| `./philo 4 500 200 1.2`           | Invalid argument.                                              |
-| `./philo 4 0 200 200`             | Invalid argument.                                              |
-| `./philo 4 -500 200 200`          | Invalid argument.                                              |
-| `./philo 4 214748364732 200 200`  | Invalid argument.                                              |
-| `./philo 1 200 200 200`           | Philosopher 1 takes a fork and dies after 200 ms.              |
-| `./philo 4 500 200 2147483647`    | A philosopher dies after 500 ms                                |
-| `./philo 4 200 210 200`           | A philosopher dies, it should display the death before 210 ms. |
-| `./philo 4 310 200 200`           | A philosopher dies.                                            |
-| `./philo 5 800 200 200 7`         | The program stops when each philosopher has eaten 7 times.     |
-| `./philo 5 800 200 200`           | No philosopher dies.                                           |
-| `./philo 4 2147483647 200 200`    | No philosopher dies.                                           |
-| `./philo 5 800 200 150`           | No philosopher dies.                                           |
-| `./philo 3 610 200 80`            | No philosopher dies.                                           |
-| `./philo 2 800 200 200`           | No philosopher dies.                                           |
-| `./philo 4 410 200 200`           | No philosopher dies.                                           |
- > Examples provided by [jotavare](https://github.com/jotavare)
+ > Map suggestions
+ ```bash
+$ ./so_long_bonus maps/small_map.ber
+```
+<p align="center">
+  <img src="https://github.com/diocode/42-So_long/assets/107859177/1047ba9d-8df8-4e79-a2c2-63f2351cf800" alt="Alt Text">
+</p>
+
+ ```bash
+$ ./so_long_bonus maps/map_demo.ber
+```
+<p align="center">
+  <img src="https://github.com/diocode/42-So_long/assets/107859177/4d6205fa-b36f-40e9-a158-fa1279b8ca09" alt="Alt Text">
+</p>
 
 <br>
 
@@ -111,51 +114,3 @@ At 42 School, projects are generally expected to adhere to the Norm, the school'
 
 * [Norminette](https://github.com/42School/norminette) - Tool by 42, to respect the code norm. `GitHub`
 * [42 Header](https://github.com/42Paris/42header) - 42 header for Vim. `GitHub`
-
-
-
-
-
-# **so_long**
-> 42 Common Core Project 
-</p>
-<p align="center">
-	<a href="#about">About</a> •
-	<a href="#how-to-use">How to use</a> •
-	<a href="#disclaimer">Disclaimer</a>
-</p>
-
-## ABOUT
-The so_long project is a 2D game where the player navigates through a maze-like environment, avoiding obstacles and enemies to reach a goal.
-It aims at teaching students about rendering, sprites, animations, color schemes and game development in 2D.
-
-<br>
-
-<div align="center">
-  <img src=https://github.com/diocode/so_long/assets/107859177/c0dc45f3-649b-46aa-b83d-90ffe1585932) />
-</div>
-
-<br>
-
-## HOW TO USE
-1º - To compile so_long you should run `make` or `make bonus` in the terminal.
-
-
-2º - Run the program using `so_long` or `so_long_bonus` with a map of your choice
-```sh
-$ ./so_long path_to_the_map_file.ber
-```
-```sh
-$ ./so_long_bonus path_to_the_map_file.ber
-```
-
-<br>
-
-## DISCLAIMER
-At 42 School, it is expected that almost every project is written in accordance with the Norm, which is the coding standard of the school:
-
-	- No for, do while, switch, case or goto are allowed
-	- No more than 25 lines per function and 5 functions per file
-	- No assigns and declarations in the same line (unless static)
-	- No more than 5 variables in 1 function
-	... 
